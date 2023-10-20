@@ -19,21 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" >
-
-        <ImageView
-            android:layout_width="78dp"
-            android:layout_height="78dp"
-            android:src="@drawable/logo_mascota"
-            android:layout_gravity="start"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="PetCare"
-            android:textSize="20sp"
-            tools:layout_editor_absoluteX="94dp"
-            tools:layout_editor_absoluteY="22dp" />
-    </androidx.appcompat.widget.Toolbar>
+</androidx.appcompat.widget.Toolbar>
 
     <ImageView
         android:id="@+id/imageView"

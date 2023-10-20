@@ -24,6 +24,11 @@
 
         <activity android:name=".LoginActivity">
         </activity>
+        <activity
+            android:name=".LoginActivity$AcercaDeActivity"
+            android:label="Acerca de ..."
+            android:theme="@style/Theme.AppCompat.Light.Dialog"/>
+
 
     </application>
 

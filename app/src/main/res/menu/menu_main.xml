@@ -9,8 +9,13 @@
     android:layout_height="?attr/actionBarSize"
     android:background="@color/naranja">
 
-    <item android:id="@+id/action_settings"
-        android:title="Preferencias"
+    <item android:id="@+id/acercaDe"
+        android:title="Acerca de"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:orderInCategory="5"
+        app:showAsAction="never"/>
+    <item android:id="@+id/descubrir"
+        android:title="Descuubrir"
         android:icon="@android:drawable/ic_menu_preferences"
         android:orderInCategory="5"
         app:showAsAction="never"/>
