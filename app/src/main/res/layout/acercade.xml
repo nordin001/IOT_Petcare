@@ -5,7 +5,9 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="16dp"
-    android:text="Este programa ha sido desarrollado como ejemplo en el curso de
-Android para demostrar cómo se pueden lanzar nuevas actividades desde la actividad
-principal.">
+    android:text="En el grupo 1-5 de estudiantes del grado GTI en Gandia,
+     tenemos un propósito común: traer tranquilidad a la vida de las
+     personas y ayudar a los dueños  de mascotas. Nos dedicamos a desarrollar
+     soluciones tecnológicas que mejoran la seguridad y el bienestar de las mascotas
+    ">
 </TextView>
