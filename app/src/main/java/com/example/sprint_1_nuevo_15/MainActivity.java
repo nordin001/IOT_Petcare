@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
+import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); // inicial xml
+
 
         // encontar el boton "Iniciar sesión" tras su id
         Button iniciarSesionButton = findViewById(R.id.inicioSesion);
@@ -28,4 +30,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }

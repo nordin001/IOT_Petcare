@@ -9,17 +9,11 @@
     android:layout_height="?attr/actionBarSize"
     android:background="@color/naranja">
 
-    <item
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:src="@drawable/logo_mascota"
-        android:layout_gravity="start"/>
-
-    <item
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PetCare"
-        android:layout_gravity="center"/>
+    <item android:id="@+id/action_settings"
+        android:title="Preferencias"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:orderInCategory="5"
+        app:showAsAction="never"/>
 
 </menu>
 
