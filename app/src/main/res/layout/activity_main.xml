@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/fondo_appp"
+    android:orientation="vertical">
+
+    <!-- Parte superior (blanco) -->
+
+    <!-- Parte inferior (naranja) -->
+
+
+    <ImageView
+        android:id="@+id/linearLayout2"
+        android:layout_width="407dp"
+        android:layout_height="322dp"
+        android:layout_marginTop="4dp"
+        android:layout_weight="1"
+        android:background="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        tools:layout_editor_absoluteX="-48dp">
+        <!-- Contenido de la parte inferior -->
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="244dp"
+            android:layout_height="224dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Bienvenidos"
+            android:textColor="@color/naranja"
+            android:textSize="35sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/inicioSesion"
+            style="@style/EstiloBotonNaranja"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Inicio de sesión" />
+
+        <Button
+            android:id="@+id/button3"
+            style="@style/EstiloBoton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Registro" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

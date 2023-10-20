@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="naranja">#FF8300</color>
+    <color name="amarillo">#FFCF54</color>
+
+
+    <color name="rosa">#FFC0CB</color>
+    <color name="negro">#000000</color>
+    <color name="mi_color_personalizado">#EDE3CE</color>
+</resources>
