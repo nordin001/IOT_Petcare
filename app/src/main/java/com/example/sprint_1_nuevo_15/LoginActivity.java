@@ -1,83 +1,108 @@
 package com.example.sprint_1_nuevo_15;
+import static androidx.core.app.ActivityCompat.startActivityForResult;
+import static androidx.core.content.ContextCompat.startActivity;
 
-
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
-
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
-public class LoginActivity extends AppCompatActivity {
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
-    //atributos
-    private EditText usernameEditText;
-    private EditText passwordEditText;
-    private Button loginButton;
+import com.example.sprint_1_nuevo_15.MainActivity;
+import com.firebase.ui.auth.AuthUI;
+import com.firebase.ui.auth.ErrorCodes;
+import com.firebase.ui.auth.IdpResponse;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class LoginActivity extends AppCompatActivity {
+    private static final int RC_SIGN_IN = 123;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
+        login();
+    }
 
-        //toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        //-----
-//icono en medio
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setLogo(R.drawable.logo);
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
-        ///---------
 
-        usernameEditText = findViewById(R.id.editTextTextEmailAddress2);
-        passwordEditText = findViewById(R.id.editTextTextPassword3);
-        loginButton = findViewById(R.id.button);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String username = usernameEditText.getText().toString(); //obtener el texto ingresado
-                String password = passwordEditText.getText().toString();
-
-                if (isValidCredentials(username, password)) { //isValidCredentials es un método personalizado
-                    // Inicio de sesion con exito
-                    Toast.makeText(LoginActivity.this, "Has iniciado sesion con exito", Toast.LENGTH_SHORT).show();
-                    // Redirect to the next screen or perform other actions
-                } else {
-                    // mensaje error
-                    Toast.makeText(LoginActivity.this, "Credenciales invalidos", Toast.LENGTH_SHORT).show();
-                }
+    //-------------------------------LOGIN FIREBASE METHOD---------------------------------
+    //-------------------------------------------------------------------------------------
+        private void login() {
+        FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
+        if (usuario != null) {
+            if(usuario.isEmailVerified()){
+            Intent i = new Intent(this, MainActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    | Intent.FLAG_ACTIVITY_NEW_TASK
+                    | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
+                Toast.makeText(this, "inicia sesión: " + usuario.getDisplayName() +
+                        " - " + usuario.getEmail(), Toast.LENGTH_LONG).show();
             }
-        });
-    }
+            else if (!usuario.isEmailVerified()){
+                Toast.makeText(this, "Verifica tu email yaa" , Toast.LENGTH_LONG).show();
+                usuario.sendEmailVerification()
+                        .addOnCompleteListener(this, task -> {
+                            if (task.isSuccessful()) {
+                                // Email verification sent successfully
+                                Intent i = new Intent(this, MainActivity.class);
+                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                                        | Intent.FLAG_ACTIVITY_NEW_TASK
+                                        | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-    private boolean isValidCredentials(String username, String password) {
-        // Implement your validation and authentication logic here
-        // Return true if the credentials are valid, otherwise return false
-        return username.equals("your_valid_username") && password.equals("your_valid_password");
-    }
 
+                                startActivity(i);
+                                Toast.makeText(this, "inicia sesión: " + usuario.getDisplayName() +
+                                        " - " + usuario.getEmail(), Toast.LENGTH_LONG).show();
 
-    @Override public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true; /** true -> el menú ya está visible */
-    }
+                        } else {
+                                // Email verification failed, handle the error
+                                Exception exception = task.getException();
+                                // Handle the exception appropriately (e.g., show an error message to the user)
+                            }
+                        });
 
-    @Override public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+            }
+        } else {
+            List<AuthUI.IdpConfig> providers = Arrays.asList(
+                    new AuthUI.IdpConfig.PhoneBuilder().build(),
+                    new AuthUI.IdpConfig.EmailBuilder().build(),
+                    new AuthUI.IdpConfig.GoogleBuilder().build());
+            startActivityForResult(
+                    AuthUI.getInstance().createSignInIntentBuilder()
+                            .setAvailableProviders(providers)
+                            .setIsSmartLockEnabled(false)
+                            .setLogo(R.mipmap.ic_launcher)
+                            .setTheme(R.style.FirebaseUITema)
+                            .build(),
+                    RC_SIGN_IN);
         }
-        return super.onOptionsItemSelected(item);
     }
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode,Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_SIGN_IN) {
+            if (resultCode == RESULT_OK) {
+                login();
+            } else {
+                String s = "";
+                IdpResponse response = IdpResponse.fromResultIntent(data);
+                if (response == null) s = "Cancelado";
+                else switch (response.getError().getErrorCode()) {
+                    case ErrorCodes.NO_NETWORK: s="Sin conexión a Internet"; break;
+                    case ErrorCodes.PROVIDER_ERROR: s="Error en proveedor"; break;
+                    case ErrorCodes.DEVELOPER_ERROR: s="Error desarrollador"; break;
+                    default: s="Otros errores de autentificación";
+                }
+                Toast.makeText(this, s, Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+    //--------------Mandar un toast-------------------
 
 }
-

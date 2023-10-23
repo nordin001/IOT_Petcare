@@ -6,4 +6,18 @@
     </style>
 
     <style name="Theme.SPRINT_1_NUEVO_15" parent="Base.Theme.SPRINT_1_NUEVO_15" />
+    <style name="FirebaseUITema" parent="FirebaseUI">
+        <item name="windowNoTitle">false</item>
+        <item name="windowActionBar">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="colorPrimary">#FF5722</item>
+        <item name="colorPrimaryDark">#FF9800</item>
+        <item name="colorAccent">#AA00FF</item>
+        <item name="colorControlNormal">#FFEB3B</item>
+        <item name="colorControlActivated">#C8913F</item>
+        <item name="colorControlHighlight">#CCA42E</item>
+        <item name="android:windowBackground">@color/amarillo</item> <!-- o reemplaza por drawable-->
+    </style>
+
 </resources>
