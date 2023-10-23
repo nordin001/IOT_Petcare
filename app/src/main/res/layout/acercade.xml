@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/TextView01"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:text="En el grupo 1-5 de estudiantes del grado GTI en Gandia,
+     tenemos un propósito común: traer tranquilidad a la vida de las
+     personas y ayudar a los dueños  de mascotas. Nos dedicamos a desarrollar
+     soluciones tecnológicas que mejoran la seguridad y el bienestar de las mascotas
+    ">
+</TextView>
