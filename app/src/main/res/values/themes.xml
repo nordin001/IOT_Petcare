@@ -11,13 +11,13 @@
         <item name="windowActionBar">true</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
-        <item name="colorPrimary">#FF5722</item>
+        <item name="colorPrimary">#8C6A37</item>
         <item name="colorPrimaryDark">#FF9800</item>
-        <item name="colorAccent">#AA00FF</item>
+        <item name="colorAccent">#FEFBFF</item>
         <item name="colorControlNormal">#FFEB3B</item>
-        <item name="colorControlActivated">#C8913F</item>
+        <item name="colorControlActivated">#FBF9F5</item>
         <item name="colorControlHighlight">#CCA42E</item>
-        <item name="android:windowBackground">@color/amarillo</item> <!-- o reemplaza por drawable-->
+        <item name="android:windowBackground">@drawable/fondo_appp</item> <!-- o reemplaza por drawable-->
     </style>
 
 </resources>

@@ -46,26 +46,9 @@ public class LoginActivity extends AppCompatActivity {
             }
             else if (!usuario.isEmailVerified()){
                 Toast.makeText(this, "Verifica tu email yaa" , Toast.LENGTH_LONG).show();
-                usuario.sendEmailVerification()
-                        .addOnCompleteListener(this, task -> {
-                            if (task.isSuccessful()) {
-                                // Email verification sent successfully
-                                Intent i = new Intent(this, MainActivity.class);
-                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-                                        | Intent.FLAG_ACTIVITY_NEW_TASK
-                                        | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                usuario.sendEmailVerification();
 
 
-                                startActivity(i);
-                                Toast.makeText(this, "inicia sesión: " + usuario.getDisplayName() +
-                                        " - " + usuario.getEmail(), Toast.LENGTH_LONG).show();
-
-                        } else {
-                                // Email verification failed, handle the error
-                                Exception exception = task.getException();
-                                // Handle the exception appropriately (e.g., show an error message to the user)
-                            }
-                        });
 
             }
         } else {
@@ -77,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                     AuthUI.getInstance().createSignInIntentBuilder()
                             .setAvailableProviders(providers)
                             .setIsSmartLockEnabled(false)
-                            .setLogo(R.mipmap.ic_launcher)
+                            .setLogo(R.drawable.logo)
                             .setTheme(R.style.FirebaseUITema)
                             .build(),
                     RC_SIGN_IN);
@@ -102,7 +85,5 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(this, s, Toast.LENGTH_LONG).show();
             }
         }
-    }
-    //--------------Mandar un toast-------------------
-
+    }//--------------Mandar un toast-------------------
 }
