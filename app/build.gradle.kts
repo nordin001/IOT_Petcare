@@ -47,5 +47,5 @@ dependencies {
     implementation("com.google.android.gms:play-services-auth:20.7.0")
     //foto del usuario
     implementation("com.android.volley:volley:1.2.1")
-
+    implementation ("com.google.firebase:firebase-auth:21.0.0") // Replace with the latest version
 }

@@ -1,6 +1,7 @@
 package com.example.sprint_1_nuevo_15;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Bitmap;
@@ -8,6 +9,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.content.Intent;
 import android.util.LruCache;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -40,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
         TextView uid = findViewById(R.id.uid);
         TextView telefono=findViewById(R.id.telefono);
         Button cerrarSesion=findViewById(R.id.btn_cerrar_sesion);
+
+        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         nombre.setText(usuario.getDisplayName());
         correo.setText(usuario.getEmail());
@@ -92,6 +98,31 @@ public class MainActivity extends AppCompatActivity {
                         finish();
                     }
                 });
+    }
+
+    //El menu arriba para el acercade
+    @Override public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true; /** true -> el menú ya está visible*/}
+    public static class AcercaDeActivity extends AppCompatActivity {
+        @Override public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.acercade);
+        }
+
+
+    }
+    public void lanzarAcercaDe(View view){
+        Intent i = new Intent(this, AcercaDeActivity.class);
+        startActivity(i);
+    }
+    @Override public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.acercaDe) {
+            lanzarAcercaDe(null);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

@@ -30,16 +30,9 @@
             </intent-filter-->
         </activity>
         <activity
-            android:name=".LoginActivity$AcercaDeActivity"
+            android:name=".MainActivity$AcercaDeActivity"
             android:label="PetCare"
             android:theme="@style/Theme.AppCompat.Light.Dialog"/>
-
-
-
-
-
-
-
 
     </application>
 

@@ -1,35 +1,28 @@
 package com.example.sprint_1_nuevo_15;
 import static androidx.core.app.ActivityCompat.startActivityForResult;
 import static androidx.core.content.ContextCompat.startActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.sprint_1_nuevo_15.MainActivity;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;
 import com.firebase.ui.auth.IdpResponse;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
 import java.util.Arrays;
 import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 123;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         login();
     }
-
-
-
     //-------------------------------LOGIN FIREBASE METHOD---------------------------------
     //-------------------------------------------------------------------------------------
         private void login() {
@@ -62,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
                             .setIsSmartLockEnabled(false)
                             .setLogo(R.drawable.logo)
                             .setTheme(R.style.FirebaseUITema)
+
                             .build(),
                     RC_SIGN_IN);
         }
@@ -85,5 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(this, s, Toast.LENGTH_LONG).show();
             }
         }
-    }//--------------Mandar un toast-------------------
+    }
+
+
 }
