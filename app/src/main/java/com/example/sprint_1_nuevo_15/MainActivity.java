@@ -128,4 +128,11 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+    public void lanzarHome(View view){
+        Intent i = new Intent(this,HomeActivity.class);
+        startActivity(i);
+    }
+
+
 }

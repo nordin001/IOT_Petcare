@@ -33,7 +33,7 @@
             android:name=".MainActivity$AcercaDeActivity"
             android:label="PetCare"
             android:theme="@style/Theme.AppCompat.Light.Dialog"/>
-
+        <activity android:name=".HomeActivity" />
     </application>
 
 </manifest>
