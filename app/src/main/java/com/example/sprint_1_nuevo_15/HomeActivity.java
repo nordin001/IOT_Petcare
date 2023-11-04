@@ -35,6 +35,7 @@ public class HomeActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MyAdapter(this, dataList);
         recyclerView.setAdapter(adapter);
+        recyclerView.setHasFixedSize(true);
 
         //---------------------------------------------------
     }

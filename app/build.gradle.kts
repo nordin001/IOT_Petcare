@@ -31,9 +31,13 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
+
 implementation ("com.android.support:multidex:1.0.3")
     implementation("com.google.firebase:firebase-firestore:24.9.1")
     implementation("androidx.appcompat:appcompat:1.6.1")
