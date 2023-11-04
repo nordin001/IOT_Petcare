@@ -1,9 +1,7 @@
 package com.example.sprint_1_nuevo_15;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,9 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.appcompat.widget.Toolbar;
-
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
@@ -26,6 +22,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //conectar
         FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
         TextView nombre = findViewById(R.id.nombre);
         TextView correo = findViewById(R.id.correo);
@@ -43,10 +44,8 @@ public class MainActivity extends AppCompatActivity {
         TextView uid = findViewById(R.id.uid);
         TextView telefono=findViewById(R.id.telefono);
         Button cerrarSesion=findViewById(R.id.btn_cerrar_sesion);
-
         Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         nombre.setText(usuario.getDisplayName());
         correo.setText(usuario.getEmail());
         provedor.setText(usuario.getProviderId());
@@ -59,7 +58,16 @@ public class MainActivity extends AppCompatActivity {
                 // la parte de codigo mainactivity.this, LoginActivity.class indica que quiero navegar de mainActivity en loginactivity
                cerrarSesion(v);
             }
+
+            // FireStore bd
+
         });
+        //--------------firestore-basedatos-----------
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Map<String, Object> datos = new HashMap<>();
+        datos.put("dato_1", "hola mundo");
+        datos.put("dato_2", 35);
+        db.collection("coleccion").document("documento").set(datos);
 
         //----mostrar la foto---------------
         RequestQueue colaPeticiones = Volley.newRequestQueue(this);
@@ -79,11 +87,9 @@ public class MainActivity extends AppCompatActivity {
         Uri urlImagen = usuario.getPhotoUrl();
         if (urlImagen != null) {
             NetworkImageView foto = (NetworkImageView) findViewById(R.id.imagen);
-            foto.setImageUrl(urlImagen.toString(), lectorImagenes);
+            foto.setImageUrl(urlImagen.toString(), lectorImagenes);}
+
         }
-
-
-                    }
     public void cerrarSesion(View view) {
         AuthUI.getInstance().signOut(getApplicationContext())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -99,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-
     //El menu arriba para el acercade
     @Override public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -109,8 +114,6 @@ public class MainActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.acercade);
         }
-
-
     }
     public void lanzarAcercaDe(View view){
         Intent i = new Intent(this, AcercaDeActivity.class);
