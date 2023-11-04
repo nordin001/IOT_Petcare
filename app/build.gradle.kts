@@ -15,6 +15,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled =true
     }
 
     buildTypes {
@@ -33,7 +34,10 @@ android {
 }
 
 dependencies {
+    implementation ("com.android.support:multidex:1.0.3")
 
+
+    implementation("com.google.firebase:firebase-firestore:24.9.1")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
