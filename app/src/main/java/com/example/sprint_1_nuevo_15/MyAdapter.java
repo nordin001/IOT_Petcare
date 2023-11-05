@@ -33,6 +33,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         public void onBindViewHolder(ViewHolder holder, int position) {
             String item = mData.get(position);
             holder.myTextView.setText(item);
+
         }
 
         @Override
