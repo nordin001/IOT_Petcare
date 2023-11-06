@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
     private void openMimacotaLayout() {
         // Inflate the mimacota.xml layout and add it to the current view
         LayoutInflater inflater = getLayoutInflater();
-        View mimacotaLayout = inflater.inflate(R.layout.apartado_mascota, null);
+        View mimacotaLayout = inflater.inflate(R.layout.editar_mascota, null);
 
         // Replace the current content view with the mimacotaLayout
         setContentView(mimacotaLayout);
