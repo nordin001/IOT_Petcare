@@ -125,6 +125,10 @@ public class MainActivity extends AppCompatActivity {
             lanzarAcercaDe(null);
             return true;
         }
+        if (id == R.id.menu_perfil) {
+            lanzarHome(null);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
