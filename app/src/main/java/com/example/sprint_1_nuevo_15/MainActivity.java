@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.content.Intent;
 import android.util.LruCache;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -89,6 +90,17 @@ public class MainActivity extends AppCompatActivity {
             NetworkImageView foto = (NetworkImageView) findViewById(R.id.imagen);
             foto.setImageUrl(urlImagen.toString(), lectorImagenes);}
 
+
+
+        Button home2Button = findViewById(R.id.home2);
+
+        home2Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openMimacotaLayout();
+            }
+        });
+
         }
     public void cerrarSesion(View view) {
         AuthUI.getInstance().signOut(getApplicationContext())
@@ -138,5 +150,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    private void openMimacotaLayout() {
+        // Inflate the mimacota.xml layout and add it to the current view
+        LayoutInflater inflater = getLayoutInflater();
+        View mimacotaLayout = inflater.inflate(R.layout.apartado_mascota, null);
 
+        // Replace the current content view with the mimacotaLayout
+        setContentView(mimacotaLayout);
+    }
 }
