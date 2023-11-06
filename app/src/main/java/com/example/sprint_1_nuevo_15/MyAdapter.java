@@ -45,12 +45,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             TextView myTextView;
             public TextView nombre, direccion;
             public ImageView foto;
-            public RatingBar valoracion;
             ViewHolder(View itemView) {
                 super(itemView);
                  myTextView = itemView.findViewById(R.id.direccion2);
                  myTextView = itemView.findViewById(R.id.direccion);
                  foto = itemView.findViewById(R.id.foto);
             }
+
+
         }
     }

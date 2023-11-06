@@ -35,8 +35,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         //conectar
+
+        Button home = findViewById(R.id.Home);
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Creamos un intento de entrar en "login.xml" layout
+                // la parte de codigo mainactivity.this, LoginActivity.class indica que quiero navegar de mainActivity en loginactivity
+                Intent intento = new Intent(MainActivity.this, HomeActivity.class);
+                startActivity(intento); //iniciar una nueva actividad
+            }
+        });
         FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
         TextView nombre = findViewById(R.id.nombre);
         TextView correo = findViewById(R.id.correo);
@@ -128,11 +139,13 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+/*
     public void lanzarHome(View view){
         Intent i = new Intent(this,HomeActivity.class);
         startActivity(i);
     }
+
+ */
 
 
 }
