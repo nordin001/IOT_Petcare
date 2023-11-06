@@ -43,7 +43,7 @@ public class EditarPerfil extends AppCompatActivity {
         FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
         TextView nombre = findViewById(R.id.nombre);
         TextView correo = findViewById(R.id.correo);
-        TextView telefono=findViewById(R.id.telefono);
+        TextView telefono=findViewById(R.id.telefonoUser);
         editTextPhone=findViewById(R.id.editTextPhone);
         editTextNombre=findViewById(R.id.editTextNombre);
         Button cerrarSesion=findViewById(R.id.btn_cerrar_sesion);
@@ -51,7 +51,6 @@ public class EditarPerfil extends AppCompatActivity {
         setSupportActionBar(toolbar);
         nombre.setText(usuario.getDisplayName());
         correo.setText(usuario.getEmail());
-        telefono.setText(usuario.getPhoneNumber());
         editTextNombre.setText(usuario.getDisplayName());
         editTextPhone.setText(usuario.getPhoneNumber());
 
@@ -130,7 +129,7 @@ public class EditarPerfil extends AppCompatActivity {
     public void ajustarCambios(View view){
 
         String nombre=editTextNombre.getText().toString();
-        String telefono=editTextPhone.getText().toString();
+        String telefono =editTextPhone.getText().toString();
         FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
         UserProfileChangeRequest perfil = new UserProfileChangeRequest.Builder()
                 .setDisplayName(nombre)

@@ -15,4 +15,19 @@
         <item name="android:layout_marginTop">16dp</item> <!-- Agrega un margen -->
         <item name="android:backgroundTint">#FF8300</item>
     </style>
+
+    <style name="EstiloBotonAmarilloCerrar">
+        <item name="android:textColor">#E60700</item> <!-- Cambia el color de texto a rojo -->
+        <item name="android:textSize">18sp</item> <!-- Cambia el tamaño del texto -->
+        <item name="android:textStyle">bold</item> <!-- Hace que el texto sea en negrita -->
+        <item name="android:layout_marginTop">16dp</item> <!-- Agrega un margen -->
+        <item name="android:backgroundTint">#FFCF54</item>
+    </style>
+
+        <style name="BoldText">
+            <item name="android:textStyle">bold</item>
+        </style>
+
+
+
 </resources>

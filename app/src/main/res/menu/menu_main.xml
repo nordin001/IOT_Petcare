@@ -19,6 +19,11 @@
         android:icon="@android:drawable/ic_menu_preferences"
         android:orderInCategory="5"
         app:showAsAction="never"/>
+    <item android:title="Buscar"
+        android:id="@+id/menu_buscar"
+        android:icon="@android:drawable/ic_menu_search"
+        android:orderInCategory="115"
+        app:showAsAction="always|collapseActionView"/>
 
 </menu>
 
