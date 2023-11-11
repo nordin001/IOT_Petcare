@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.LruCache;
 import android.view.Menu;
@@ -28,10 +29,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class EditarPerfil extends AppCompatActivity {
-
     EditText editTextPhone;
     EditText editTextNombre;
     @Override
@@ -53,7 +54,6 @@ public class EditarPerfil extends AppCompatActivity {
         correo.setText(usuario.getEmail());
         editTextNombre.setText(usuario.getDisplayName());
         editTextPhone.setText(usuario.getPhoneNumber());
-
         cerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,11 +141,30 @@ public class EditarPerfil extends AppCompatActivity {
                     Toast.makeText(EditarPerfil.this, "", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    Toast.makeText(EditarPerfil.this, "Cambiaso con exito", Toast.LENGTH_LONG).show();
+                    Toast.makeText(EditarPerfil.this, "Cambiado con exito", Toast.LENGTH_LONG).show();
                 }
             }
         });
+        if (!TextUtils.isEmpty(telefono)) {
+            // Actualizar el número de teléfono
+            PhoneAuthCredential credential = PhoneAuthProvider.getCredential(usuario.getPhoneNumber(), "Código_de_verificación");
+            usuario.updatePhoneNumber(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(EditarPerfil.this, "Número de teléfono actualizado con éxito", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(EditarPerfil.this, "Error al actualizar el número de teléfono", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+        }
         //usuario.updatePhoneNumber(888888888);
+
+        //------------abrir Main Activity despues de ajustar los cambios asi se refresca tambien
+        Intent i = new Intent(this,MainActivity.class);
+        startActivity(i);
+
 
     }
 }
