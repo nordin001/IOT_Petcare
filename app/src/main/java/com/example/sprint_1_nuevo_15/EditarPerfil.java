@@ -112,7 +112,7 @@ public class EditarPerfil extends AppCompatActivity {
 
 
     public void lanzarHome(View view){
-        Intent i = new Intent(this,HomeActivity.class);
+        Intent i = new Intent(this,EditarPerfil.class);
         startActivity(i);
     }
     public void cerrarSesion(View view) {
