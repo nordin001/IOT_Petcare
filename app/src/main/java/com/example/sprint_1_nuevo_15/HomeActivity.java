@@ -1,5 +1,6 @@
 package com.example.sprint_1_nuevo_15;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,27 +18,27 @@ import androidx.annotation.NonNull;
 import android.content.Context;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private MyAdapter adapter;
-    private ArrayList<DataModel> dataList; // Replace YourDataModel with your actual data model class
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.home);
+        private RecyclerView mRecyclerView;
+        private MyAdapter mAdapter;
 
-        //----------------RECYCLER VIEW-------------------------
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.home);
 
-        recyclerView = findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new MyAdapter(this, dataList);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setHasFixedSize(true);
+            mRecyclerView = findViewById(R.id.recycler_view);
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //---------------------------------------------------
+            List<String> data = new ArrayList<>();
+            data.add("Item 1");
+            data.add("Item 2");
+
+            mAdapter = new MyAdapter(this, data);
+            mRecyclerView.setAdapter(mAdapter);
+        }
     }
-
-}

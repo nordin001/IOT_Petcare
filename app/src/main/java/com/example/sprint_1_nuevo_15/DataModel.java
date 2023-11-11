@@ -1,11 +1,15 @@
 package com.example.sprint_1_nuevo_15;
 
 public class DataModel {
+
+
     private String nombre;
     private String direccion;
     private String direccion2;
     private String direccion3;
     private int imagenResId; // Resource ID for the image, assuming you use drawable resources
+    private String foto;
+
 
     public DataModel(String nombre, String direccion, String direccion2, String direccion3, int imagenResId) {
         this.nombre = nombre;
@@ -31,8 +35,19 @@ public class DataModel {
         return direccion3;
     }
 
-    public int getImagenResId() {
-        return imagenResId;
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+    @Override
+    public String toString() {
+        return "Lugar{" +
+                "nombre='" + nombre + '\'' +
+                ", direccion='" + direccion + '\'' +
+                '}';
     }
 }
 
