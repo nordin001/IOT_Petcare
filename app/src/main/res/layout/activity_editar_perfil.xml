@@ -69,18 +69,32 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextNombre" />
 
 
+    <TextView
+        android:id="@+id/telefonoUser2"
+        style="@style/BoldText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Correo electronico"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.18"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
+
     <Button
         android:id="@+id/btn_cerrar_sesion"
         style="@style/EstiloBotonAmarilloCerrar"
         android:layout_width="329dp"
         android:layout_height="44dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:onClick="cerrarSesion"
         android:padding="8dp"
         android:text="Cerrar sesión"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.552"
+        app:layout_constraintHorizontal_bias="0.56"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AjustarCambios" />
 
@@ -146,8 +160,21 @@
         android:text="Ajustar Cambios"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.563"
+        app:layout_constraintHorizontal_bias="0.585"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
+        app:layout_constraintTop_toBottomOf="@+id/editarCorreo" />
+
+    <EditText
+        android:id="@+id/editarCorreo"
+        android:layout_width="329dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/edit_text_round_corner"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="@+id/editTextPhone"
+        app:layout_constraintStart_toStartOf="@+id/editTextPhone"
+        app:layout_constraintTop_toBottomOf="@+id/telefonoUser2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
