@@ -4,10 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.LruCache;
 import android.view.Menu;
@@ -28,12 +30,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class EditarPerfil extends AppCompatActivity {
-
     EditText editTextPhone;
     EditText editTextNombre;
+    EditText editTextCorreo;
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +48,9 @@ public class EditarPerfil extends AppCompatActivity {
         FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
         TextView nombre = findViewById(R.id.nombre);
         TextView correo = findViewById(R.id.correo);
-        TextView telefono=findViewById(R.id.telefonoUser);
         editTextPhone=findViewById(R.id.editTextPhone);
         editTextNombre=findViewById(R.id.editTextNombre);
+        editTextCorreo=findViewById(R.id.editarCorreo);
         Button cerrarSesion=findViewById(R.id.btn_cerrar_sesion);
         Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -53,7 +58,7 @@ public class EditarPerfil extends AppCompatActivity {
         correo.setText(usuario.getEmail());
         editTextNombre.setText(usuario.getDisplayName());
         editTextPhone.setText(usuario.getPhoneNumber());
-
+        editTextCorreo.setText(usuario.getEmail());
         cerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,10 +132,11 @@ public class EditarPerfil extends AppCompatActivity {
     }
 
     public void ajustarCambios(View view){
-
         String nombre=editTextNombre.getText().toString();
         String telefono =editTextPhone.getText().toString();
+        String correo=editTextCorreo.getText().toString();
         FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
+        usuario.updateEmail(correo);
         UserProfileChangeRequest perfil = new UserProfileChangeRequest.Builder()
                 .setDisplayName(nombre)
                 .build();
@@ -141,11 +147,15 @@ public class EditarPerfil extends AppCompatActivity {
                     Toast.makeText(EditarPerfil.this, "", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    Toast.makeText(EditarPerfil.this, "Cambiaso con exito", Toast.LENGTH_LONG).show();
+                    Toast.makeText(EditarPerfil.this, "Cambiado con exito", Toast.LENGTH_LONG).show();
                 }
             }
         });
-        //usuario.updatePhoneNumber(888888888);
-
+        //-------------------telefono --------------------
+        //actualizar el firestore
+        Usuarios.actualizarUsuarioNOCORREO(usuario,nombre,telefono,correo);
+        //------------abrir Main Activity despues de ajustar los cambios asi se refresca tambien
+        Intent i = new Intent(this,MainActivity.class);
+        startActivity(i);
     }
 }
