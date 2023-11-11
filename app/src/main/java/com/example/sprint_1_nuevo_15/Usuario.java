@@ -5,7 +5,16 @@ public class Usuario {
     private String correo;
     private long inicioSesion;
 
-    //CONSTRUCTOR 1 vacío,
+    private String telefono;
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+//CONSTRUCTOR 1 vacío,
 
     public Usuario () {}
 
@@ -36,6 +45,13 @@ public class Usuario {
 
     public Usuario(String nombre, String correo) {
         this(nombre, correo, System.currentTimeMillis());
+    }
+
+    public Usuario(String nombre, String correo, long inicioSesion, String telefono) {
+        this.nombre = nombre;
+        this.correo = correo;
+        this.inicioSesion = inicioSesion;
+        this.telefono = telefono;
     }
 }
 
