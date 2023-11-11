@@ -39,6 +39,7 @@ android {
 dependencies {
 
 implementation ("com.android.support:multidex:1.0.3")
+
     implementation("com.google.firebase:firebase-firestore:24.9.1")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
@@ -54,4 +55,6 @@ implementation ("com.android.support:multidex:1.0.3")
     //foto del usuario
     implementation("com.android.volley:volley:1.2.1")
     implementation ("com.google.firebase:firebase-auth:21.0.0") // Replace with the latest version
+    //frestore
+    implementation("com.google.firebase:firebase-firestore:24.9.1")
 }

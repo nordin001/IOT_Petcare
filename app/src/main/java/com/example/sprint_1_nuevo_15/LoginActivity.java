@@ -28,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
         private void login() {
         FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
         if (usuario != null) {
+            Usuarios.guardarUsuario(usuario); // llamando al metodo para guardar el usuario
             if(usuario.isEmailVerified()){
             Intent i = new Intent(this, MainActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
