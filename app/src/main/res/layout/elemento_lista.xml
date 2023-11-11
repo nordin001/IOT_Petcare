@@ -16,7 +16,7 @@
         android:padding="4dp">
 
         <ImageView
-            android:id="@+id/foto"
+            android:id="@+id/fotoMascota"
             android:layout_width="79dp"
             android:layout_height="79dp"
             android:layout_marginLeft="10dp"
@@ -50,7 +50,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/foto2"
-            app:layout_constraintStart_toEndOf="@+id/foto"
+            app:layout_constraintStart_toEndOf="@+id/fotoMascota"
             app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -64,25 +64,25 @@
             android:text="Gandia España"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/foto2"
-            app:layout_constraintStart_toEndOf="@+id/foto"
+            app:layout_constraintStart_toEndOf="@+id/fotoMascota"
             app:layout_constraintTop_toBottomOf="@id/nombre" />
 
         <TextView
-            android:id="@+id/direccion2"
+            android:id="@+id/peso"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:gravity="start"
             android:maxLines="1"
             android:text="Peso 15"
-            app:layout_constraintBottom_toTopOf="@+id/direccion3"
+            app:layout_constraintBottom_toTopOf="@+id/edad"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/foto"
+            app:layout_constraintStart_toEndOf="@+id/fotoMascota"
             app:layout_constraintTop_toBottomOf="@+id/direccion" />
 
         <TextView
-            android:id="@+id/direccion3"
+            android:id="@+id/edad"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -93,7 +93,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/foto"
+            app:layout_constraintStart_toEndOf="@+id/fotoMascota"
             app:layout_constraintTop_toBottomOf="@+id/direccion" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

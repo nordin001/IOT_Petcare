@@ -57,4 +57,6 @@ implementation ("com.android.support:multidex:1.0.3")
     implementation ("com.google.firebase:firebase-auth:21.0.0") // Replace with the latest version
     //frestore
     implementation("com.google.firebase:firebase-firestore:24.9.1")
+    //recycler Firestore
+    implementation("com.firebaseui:firebase-ui-firestore:8.0.2")
 }

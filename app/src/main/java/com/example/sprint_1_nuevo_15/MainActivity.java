@@ -143,15 +143,20 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         if (id == R.id.menu_perfil) {
-            lanzarHome(null);
+            lanzarEditarPerfil(null);
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
 
-    public void lanzarHome(View view){
+    public void lanzarEditarPerfil(View view){
         Intent i = new Intent(this,EditarPerfil.class);
+        startActivity(i);
+    }
+
+    public void lanzarHome(View view){
+        Intent i = new Intent(this,HomeActivity.class);
         startActivity(i);
     }
 
