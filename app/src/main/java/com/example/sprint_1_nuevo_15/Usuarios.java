@@ -29,4 +29,12 @@ public class Usuarios {
         );
     }
 
+    public static void actualizarUsuarioNOTelefono(final FirebaseUser user, String nuevoNombre, String nuevoCorreo) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("usuarios").document(user.getUid()).update(
+                "nombre", nuevoNombre,
+                "correo",nuevoCorreo
+        );
+    }
+
 }
