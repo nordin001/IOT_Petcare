@@ -136,7 +136,6 @@ public class EditarPerfil extends AppCompatActivity {
         String telefono =editTextPhone.getText().toString();
         String correo=editTextCorreo.getText().toString();
         FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
-        usuario.updateEmail(correo);
         UserProfileChangeRequest perfil = new UserProfileChangeRequest.Builder()
                 .setDisplayName(nombre)
                 .build();
@@ -151,9 +150,20 @@ public class EditarPerfil extends AppCompatActivity {
                 }
             }
         });
+
         //-------------------telefono --------------------
-        //actualizar el firestore
-        Usuarios.actualizarUsuarioNOCORREO(usuario,nombre,telefono,correo);
+        //actualizar los datod de un usuario en  firestore
+        //Usuarios.actualizarUsuarioNOCORREO(usuario,nombre,telefono,correo);
+        //actualizar el usuario de auth : Cambiar el email
+        usuario.updateEmail(correo);
+
+        //-----------------------Cambiar los credentiales de un usuario auth firebase (Añadir un numero de telefono)
+        if(!editTextPhone.getText().toString().isEmpty()){
+            Usuarios.actualizarUsuarioNOCORREO(usuario,nombre,telefono,correo);
+        }
+        else {
+            Usuarios.actualizarUsuarioNOTelefono(usuario,nombre,correo);
+        }
         //------------abrir Main Activity despues de ajustar los cambios asi se refresca tambien
         Intent i = new Intent(this,MainActivity.class);
         startActivity(i);
