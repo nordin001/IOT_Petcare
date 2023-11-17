@@ -7,19 +7,23 @@ public class Mascota {
     private GeoPunto posicion;
     private TipoLugar tipo;
     private String foto;
+    private double peso;
+    private int edad;
     //private int telefono;
    // private String url;
    // private String comentario;
    // private long fecha;
    // private float valoracion;
 
-    public Mascota(String nombre, String direccion, double longitud,
+    public Mascota(String nombre, String direccion ,double longitud,
                    double latitud, TipoLugar tipo) {
       //  fecha = System.currentTimeMillis();
         posicion = new GeoPunto(longitud, latitud);
         this.nombre = nombre;
         this.direccion = direccion;
         this.tipo = tipo;
+
+        this.edad=edad;
        // this.telefono = telefono;
        // this.url = url;
       //  this.comentario = comentario;
@@ -64,51 +68,8 @@ public class Mascota {
         this.foto = foto;
     }
 
-    /*public int getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(int telefono) {
-        this.telefono = telefono;
-    }
 
 
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getComentario() {
-        return comentario;
-    }
-
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
-    }
-
-    public long getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(long fecha) {
-        this.fecha = fecha;
-    }
-
-
-
-    public float getValoracion() {
-        return valoracion;
-    }
-
-    public void setValoracion(float valoracion) {
-        this.valoracion = valoracion;
-    }
-
-     */
 
     public TipoLugar getTipo() {
         return tipo;
@@ -128,5 +89,6 @@ public class Mascota {
                 ", foto='" + foto + '\'' +
                 '}';
     }
+
 
 }

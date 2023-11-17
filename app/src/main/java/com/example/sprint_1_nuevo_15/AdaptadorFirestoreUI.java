@@ -39,6 +39,7 @@ public MyAdapter.ViewHolder onCreateViewHolder(
     protected void onBindViewHolder(@NonNull MyAdapter
             .ViewHolder holder, int position, @NonNull Mascota lugar) {
         holder.personaliza(lugar);
+
     }
 
     public void setOnItemClickListener(View.OnClickListener onClick) {
