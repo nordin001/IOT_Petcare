@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -78,8 +79,6 @@ public class EditarMascotaActivity extends AppCompatActivity {
         Intent i = new Intent(this,EditarPerfil.class);
         startActivity(i);
     }
-
-
     public static class AcercaDeActivity extends AppCompatActivity {
         @Override public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);

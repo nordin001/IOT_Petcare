@@ -151,12 +151,12 @@ public class VistaMascotaActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
  //---------------METODOS MENU----------------------
- public void lanzarEditarPerfil(View view){
-     Intent i = new Intent(this,EditarPerfil.class);
-     startActivity(i);
- }
 
 
+    public void lanzarEditarPerfil(View view){
+        Intent i = new Intent(this,EditarPerfil.class);
+        startActivity(i);
+    }
     public static class AcercaDeActivity extends AppCompatActivity {
         @Override public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);

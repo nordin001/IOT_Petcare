@@ -219,9 +219,12 @@ public void reestablecerContraseña(View v) {
         mensaje("Introduce un correo");
     } else if (!correo.matches(".+@.+[.].+")) {
         mensaje("Correo no válido");
-    } else {
+  /*  } else {
         dialogo.show();
+
+   */
         // Check if the email is registered before sending the reset email
+        /*
         auth.fetchSignInMethodsForEmail(correo)
                 .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
                     @Override
@@ -242,8 +245,28 @@ public void reestablecerContraseña(View v) {
                         }
                     }
                 });
+
+
+         */
+
+
+    } else {
+        dialogo.show();
+        auth.sendPasswordResetEmail(correo)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override public void onComplete(@NonNull Task<Void> task) {
+                        dialogo.dismiss();
+                        if (task.isSuccessful()) {
+                            mensaje("Verifica tu correo para cambiar contraseña.");
+                        } else {
+                            mensaje("ERROR al mandar correo para cambiar contraseña");
+                        }
+                    }
+                });
     }
 }
+
+
 
     private void sendPasswordResetEmail() {
         auth.sendPasswordResetEmail(correo)
