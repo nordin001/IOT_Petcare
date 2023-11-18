@@ -24,7 +24,13 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 import android.view.View;
 import androidx.annotation.NonNull;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.SignInMethodQueryResult;
+
+
 public class CustomLogInActivity extends AppCompatActivity {
+
     private FirebaseAuth auth = FirebaseAuth.getInstance();
     private String correo = "";
     private String contraseña = "";
@@ -33,42 +39,42 @@ public class CustomLogInActivity extends AppCompatActivity {
     private TextInputLayout tilCorreo, tilContraseña;
     private ProgressDialog dialogo;
 
-
     //-------------inicio personalizado con google--------
     private static final int RC_GOOGLE_SIGN_IN = 123;
     GoogleSignInClient googleSignInClient;
-    //-------------------------------------------
 
+    //----------------------------------------------------
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        etCorreo = (EditText) findViewById(R.id.correElec);
-        etContraseña = (EditText) findViewById(R.id.contrasena);
-       // tilCorreo = (TextInputLayout) findViewById(R.id.til_correo);
-      //  tilContraseña = (TextInputLayout) findViewById(R.id.til_contraseña);
-        contenedor = (ViewGroup) findViewById(R.id.contenedor);
+
+        etCorreo = findViewById(R.id.correElec);
+        etContraseña = findViewById(R.id.contrasena);
+        contenedor = findViewById(R.id.contenedor);
         dialogo = new ProgressDialog(this);
         dialogo.setTitle("Verificando usuario");
         dialogo.setMessage("Por favor espere...");
+
         verificaSiUsuarioValidado();
 
 
         //--------------entrar con googleee-----------------
 
-        //Google
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(
-                GoogleSignInOptions.DEFAULT_SIGN_IN)
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_cleint_id))
                 .requestEmail()
                 .build();
         googleSignInClient = GoogleSignIn.getClient(this, gso);
-
-
     }
+
     //---------------metodo de si el usuario es valido ----------------
+
     private void verificaSiUsuarioValidado() {
         if (auth.getCurrentUser() != null) {
-            Usuarios.guardarUsuario(auth.getCurrentUser()); // user guardado
+            Usuarios.guardarUsuario(auth.getCurrentUser());
             Intent i = new Intent(this, MainActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
                     | Intent.FLAG_ACTIVITY_NEW_TASK
@@ -77,6 +83,8 @@ public class CustomLogInActivity extends AppCompatActivity {
             finish();
         }
     }
+
+
     //-------------------metodos de registro y inicio -----------------
     public void inicioSesiónCorreo(View v) {
         if (verificaCampos()) {
@@ -85,16 +93,59 @@ public class CustomLogInActivity extends AppCompatActivity {
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+                            dialogo.dismiss();
                             if (task.isSuccessful()) {
                                 verificaSiUsuarioValidado();
                             } else {
-                                dialogo.dismiss();
-                                mensaje(task.getException().getLocalizedMessage());
+                                handleFirebaseAuthException(task.getException());
                             }
                         }
                     });
         }
     }
+
+    private void handleFirebaseAuthException(Exception exception) {
+        if (exception instanceof FirebaseAuthInvalidUserException) {
+            mensaje("Invalid email or unregistered user");
+        } else if (exception instanceof FirebaseAuthInvalidCredentialsException) {
+            mensaje("Invalid password");
+        } else {
+            mensaje(exception.getLocalizedMessage());
+        }
+    }
+
+    //------------------MENSAJE DE ERROR-------------------------------
+
+    private void mensaje(String mensaje) {
+        Snackbar.make(contenedor, mensaje, Snackbar.LENGTH_LONG).show();
+    }
+
+    private boolean verificaCampos() {
+        correo = etCorreo.getText().toString();
+        contraseña = etContraseña.getText().toString();
+        if (correo.isEmpty() || !correo.matches(".+@.+[.].+")) {
+            mensaje("Correo no válido !");
+            return false;
+        } else if (contraseña.isEmpty() || contraseña.length() < 6 ||
+                !contraseña.matches(".*[0-9].*") ||
+                !contraseña.matches(".*[A-Z].*")) {
+            mensaje("Contraseña no válida. Ha de contener al menos 6 caracteres, una letra mayúscula.");
+            return false;
+        }
+        return true;
+    }
+
+    public void firebaseUI(View v) {
+        startActivity(new Intent(this, LoginActivity.class));
+    }
+
+
+
+/*
+
+
+
+
 
     public void registroCorreo(View v) {
         if (verificaCampos()) {
@@ -115,40 +166,7 @@ public class CustomLogInActivity extends AppCompatActivity {
         }
     }
 
-    //--------------------------- fin inciio y registro-------------------------
-
-    //--------------mas metodos----------
-
-    private void mensaje(String mensaje) {
-        Snackbar.make(contenedor, mensaje, Snackbar.LENGTH_LONG).show();
-    }
-
-    private boolean verificaCampos() {
-        correo = etCorreo.getText().toString();
-        contraseña = etContraseña.getText().toString();
-        tilCorreo.setError(""); tilContraseña.setError("");
-        if (correo.isEmpty()) {
-            tilCorreo.setError("Introduce un correo");
-        } else if (!correo.matches(".+@.+[.].+")) {
-            tilCorreo.setError("Correo no válido");
-        } else if (contraseña.isEmpty()) {
-            tilContraseña.setError("Introduce una contraseña");
-        } else if (contraseña.length()<6) {
-            tilContraseña.setError("Ha de contener al menos 6 caracteres");
-        } else if (!contraseña.matches(".*[0-9].*")) {
-            tilContraseña.setError("Ha de contener un número");
-        } else if (!contraseña.matches(".*[A-Z].*")) {
-            tilContraseña.setError("Ha de contener una letra mayúscula");
-        } else {
-            return true;
-        }
-        return false;
-    }
-
-    public void firebaseUI(View v) {
-        startActivity(new Intent(this, LoginActivity.class));
-    }
-
+ */
 
     //---------------metodo button GOOGLE CLCIK --------------
     public void autentificarGoogle(View v) {
@@ -192,5 +210,61 @@ public class CustomLogInActivity extends AppCompatActivity {
     }
 
     //-----------FIN METODOS DE BUTTON GOOGLE Y AUTENTIFICACION GOOGLE CUSTOM--------------
+
+//---------recuperacion de contraseña-----------
+public void reestablecerContraseña(View v) {
+    correo = etCorreo.getText().toString();
+
+    if (correo.isEmpty()) {
+        mensaje("Introduce un correo");
+    } else if (!correo.matches(".+@.+[.].+")) {
+        mensaje("Correo no válido");
+    } else {
+        dialogo.show();
+        // Check if the email is registered before sending the reset email
+        auth.fetchSignInMethodsForEmail(correo)
+                .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
+                        if (task.isSuccessful()) {
+                            SignInMethodQueryResult result = task.getResult();
+                            if (result.getSignInMethods().isEmpty()) {
+                                // The email is not registered
+                                dialogo.dismiss();
+                                mensaje("No hay ninguna cuenta registrada con este correo");
+                            } else {
+                                // The email is registered, proceed with sending the reset email
+                                sendPasswordResetEmail();
+                            }
+                        } else {
+                            dialogo.dismiss();
+                            mensaje("Error al verificar la existencia de la cuenta");
+                        }
+                    }
+                });
+    }
+}
+
+    private void sendPasswordResetEmail() {
+        auth.sendPasswordResetEmail(correo)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        dialogo.dismiss();
+                        if (task.isSuccessful()) {
+                            mensaje("Verifica tu correo para cambiar contraseña.");
+                        } else {
+                            mensaje("ERROR al mandar correo para cambiar contraseña");
+                        }
+                    }
+                });
+    }
+
+
+    public void IrAlRegistro(View view){
+        Intent i = new Intent(this, CustomRegistroActivity.class);
+        startActivity(i);
+    }
+
 
 }

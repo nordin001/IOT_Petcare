@@ -1,6 +1,19 @@
 package com.example.sprint_1_nuevo_15;
 
+import java.util.List;
+
 public class Usuario {
+    private List<Mascota> mascotas; // Lista de mascotas del usuario
+
+    // Constructor, métodos de acceso y otros métodos...
+
+    public List<Mascota> getMascotas() {
+        return mascotas;
+    }
+
+    public void setMascotas(List<Mascota> mascotas) {
+        this.mascotas = mascotas;
+    }
     private String nombre;
     private String correo;
     private long inicioSesion;
@@ -53,5 +66,6 @@ public class Usuario {
         this.inicioSesion = inicioSesion;
         this.telefono = telefono;
     }
+
 }
 

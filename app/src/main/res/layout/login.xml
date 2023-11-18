@@ -30,8 +30,10 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="200dp"
         app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/correElec"
+        app:layout_constraintStart_toStartOf="@+id/correElec"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:srcCompat="@drawable/perro_login" />
 
@@ -81,6 +83,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:onClick="reestablecerContraseña"
         android:text="Has olvidado tu contraseña?"
         app:layout_constraintEnd_toEndOf="@+id/contrasena"
         app:layout_constraintTop_toBottomOf="@+id/contrasena" />
@@ -92,31 +95,49 @@
 
         android:layout_height="44dp"
         android:layout_marginTop="40dp"
+        android:onClick="inicioSesiónCorreo"
         android:text="Inicio de sesión"
         app:cornerRadius="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/contrasena"
         app:layout_constraintHorizontal_bias="0.307"
         app:layout_constraintStart_toStartOf="@+id/contrasena"
-        app:layout_constraintTop_toBottomOf="@+id/contrasena"
-        app:layout_constraintVertical_bias="0.03" />
+        app:layout_constraintTop_toBottomOf="@+id/contrasena" />
 
-    <Button
-        android:id="@+id/Google_incio"
-        style="@style/EstiloBotonNaranja"
-        android:layout_width="329dp"
-
-        android:layout_height="44dp"
-        android:layout_marginTop="40dp"
+    <ImageView
+        android:id="@+id/google_inicio"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/background_iconos_inicio"
         android:onClick="autentificarGoogle"
-        android:text="inicio GOOGLE"
-        app:cornerRadius="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/contrasena"
-        app:layout_constraintHorizontal_bias="0.23"
-        app:layout_constraintStart_toStartOf="@+id/contrasena"
-        app:layout_constraintTop_toBottomOf="@+id/contrasena"
-        app:layout_constraintVertical_bias="0.731" />
+        app:layout_constraintStart_toStartOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:srcCompat="@drawable/googleicon" />
+
+    <ImageView
+        android:id="@+id/firebase_inicio"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/background_iconos_inicio"
+        android:onClick="firebaseUI"
+        app:layout_constraintStart_toEndOf="@+id/google_inicio"
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:srcCompat="@drawable/firebase_icono" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:onClick="IrAlRegistro"
+        android:text="@string/welcome_message"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firebase_inicio" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
