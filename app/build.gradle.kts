@@ -68,7 +68,11 @@ implementation ("com.android.support:multidex:1.0.3")
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation("com.google.firebase:firebase-auth")
 
-   //     implementation ("com.twitter.sdk.android:twitter-core:3.1.1")
+    //google map
+    implementation ("com.google.android.gms:play-services-maps:18.1.0")
+
+
+    //     implementation ("com.twitter.sdk.android:twitter-core:3.1.1")
 
     ///implementation ("com.twitter.sdk.android:twitter-core:4.4.0")
     //implementation ("com.twitter.sdk.android:twitter:4.4.0")

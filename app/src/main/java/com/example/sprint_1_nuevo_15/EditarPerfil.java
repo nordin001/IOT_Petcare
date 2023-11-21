@@ -9,8 +9,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.util.LruCache;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,14 +27,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class EditarPerfil extends AppCompatActivity {
     EditText editTextPhone;
     EditText editTextNombre;
     EditText editTextCorreo;
+
+    //----------editar photo----------------
+
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -86,6 +86,10 @@ public class EditarPerfil extends AppCompatActivity {
         if (urlImagen != null) {
             NetworkImageView foto = (NetworkImageView) findViewById(R.id.imagen);
             foto.setImageUrl(urlImagen.toString(), lectorImagenes);}
+
+
+
+
     }
     //------------------fin foto de usuario
     @Override public boolean onCreateOptionsMenu(Menu menu) {

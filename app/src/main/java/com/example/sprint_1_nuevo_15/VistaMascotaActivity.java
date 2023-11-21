@@ -84,6 +84,17 @@ public class VistaMascotaActivity extends AppCompatActivity {
 
 
 
+        ///-----------btootn gps-----------------------
+        ImageView imageView4 = findViewById(R.id.imageView4);
+
+        // Set an OnClickListener for the ImageView
+        imageView4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Open MapsActivity when the ImageView is clicked
+                abrirMapsActivity();
+            }
+        });
 
 
     }
@@ -178,6 +189,14 @@ public class VistaMascotaActivity extends AppCompatActivity {
     }
 
     // INTENCIONES
+
+    //---------------metodo gps abrir--------------------
+
+    // Add a method to open MapsActivity
+    private void abrirMapsActivity() {
+        Intent intent = new Intent(this, mapaActivity.class);
+        startActivity(intent);
+    }
 
 
 }

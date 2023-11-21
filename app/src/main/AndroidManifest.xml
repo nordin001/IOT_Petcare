@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:name=".Aplicacion"
@@ -20,7 +22,7 @@
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".CustomLogInActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,12 +52,15 @@
         <activity android:name=".VistaMascotaActivity"/>
         <activity android:name=".EditarMascotaActivity" />
 
-        <activity android:name=".CustomLogInActivity">
+        <activity android:name=".LoginActivity">
 
         </activity>
         <activity android:name=".CustomRegistroActivity"/>
 
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
 
+        <activity android:name=".mapaActivity"/>
     </application>
 
 </manifest>

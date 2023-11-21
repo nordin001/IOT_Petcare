@@ -28,7 +28,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.SignInMethodQueryResult;
 
-//-----customlogim------------------------
+//-----customlogidm------------------------
 public class CustomLogInActivity extends AppCompatActivity {
 
     private FirebaseAuth auth = FirebaseAuth.getInstance();
