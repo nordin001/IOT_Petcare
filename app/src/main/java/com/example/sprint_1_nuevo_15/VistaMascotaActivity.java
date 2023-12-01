@@ -107,7 +107,7 @@ public class VistaMascotaActivity extends AppCompatActivity {
         TextView telefono = findViewById(R.id.direccion2);
 
         nombre.setText(lugar.getNombre());
-        logoTipo.setImageResource(lugar.getTipo().getRecurso());
+       // logoTipo.setImageResource(lugar.getTipo().getRecurso());
 
         direccion.setText(lugar.getDireccion());
 

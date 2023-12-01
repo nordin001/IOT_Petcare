@@ -28,6 +28,12 @@ public class Aplicacion extends Application {
 
     public MascotasAsinc mascotas;
     public AdaptadorFirestoreUI adaptador;
+
+
+
+
+        // ... rest of your code
+
     @Override public void onCreate() {
         super.onCreate();
         mascotas = new MascotasFirestore();
@@ -36,7 +42,8 @@ public class Aplicacion extends Application {
                 .limit(2);
         FirestoreRecyclerOptions<Mascota> opciones =new FirestoreRecyclerOptions
                 .Builder<Mascota>().setQuery(query, Mascota.class).build();
-        adaptador = new AdaptadorFirestoreUI(opciones, this);
+        //adaptador = new AdaptadorFirestoreUI(opciones, this);
+        adaptador = new AdaptadorFirestoreUI(getApplicationContext(), opciones);
 
         // Inicialización Volley (En Applicaction, para hacerlo solo una vez)
         RequestQueue colaPeticiones = Volley.newRequestQueue(this);

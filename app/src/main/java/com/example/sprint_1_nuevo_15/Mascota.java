@@ -94,6 +94,7 @@ public class Mascota {
 }
 
  */
+/*
 public class Mascota {
     private String nombre;
     private String direccion;
@@ -103,14 +104,18 @@ public class Mascota {
     private double peso;
     private int edad;
     private String ownerID;
+    private String SensorID;
+
+
 
     // Constructors
-    public Mascota(String nombre, String direccion, double longitud, double latitud, TipoLugar tipo, String ownerID) {
+    public Mascota(String nombre, String direccion, double longitud, double latitud, TipoLugar tipo, String ownerID,String SensorID) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.posicion = new GeoPunto(longitud, latitud);
         this.tipo = tipo;
         this.ownerID = ownerID;
+        this.SensorID = SensorID;
     }
 
     public Mascota() {
@@ -183,6 +188,13 @@ public class Mascota {
     public void setOwnerID(String ownerID) {
         this.ownerID = ownerID;
     }
+    public String getSensorID() {
+        return SensorID;
+    }
+
+    public void setSensorID(String sensorID) {
+        SensorID = sensorID;
+    }
 
     @Override
     public String toString() {
@@ -195,10 +207,120 @@ public class Mascota {
                 ", peso=" + peso +
                 ", edad=" + edad +
                 ", ownerID='" + ownerID + '\'' +
+                ",SenosrID= "+ SensorID+ '\'' +
                 '}';
     }
 }
 
+
+ */
+public class Mascota {
+    private String nombre;
+    private String direccion;
+    private GeoPunto posicion;
+    private String foto;
+    private double peso;
+    private int edad;
+    private String ownerID;
+    private String sensorID;
+
+    // Constructors
+    public Mascota(String nombre, String direccion, double longitud, double latitud, String ownerID, String sensorID) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.posicion = new GeoPunto(longitud, latitud);
+        this.ownerID = ownerID;
+        this.sensorID = sensorID;
+    }
+
+    public Mascota() {
+        this.posicion = new GeoPunto(0.0, 0.0);
+    }
+
+    // Getters and Setters
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public GeoPunto getPosicion() {
+        return posicion;
+    }
+
+    public void setPosicion(GeoPunto posicion) {
+        this.posicion = posicion;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public double getPeso() {
+        return peso;
+    }
+
+    public void setPeso(double peso) {
+        this.peso = peso;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public String getOwnerID() {
+        return ownerID;
+    }
+
+    public void setOwnerID(String ownerID) {
+        this.ownerID = ownerID;
+    }
+
+    public String getSensorID() {
+        return sensorID;
+    }
+
+    public void setSensorID(String sensorID) {
+        this.sensorID = sensorID;
+    }
+
+    @Override
+    public String toString() {
+        return "Mascota{" +
+                "nombre='" + nombre + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", posicion=" + posicion +
+                ", foto='" + foto + '\'' +
+                ", peso=" + peso +
+                ", edad=" + edad +
+                ", ownerID='" + ownerID + '\'' +
+                ", sensorID='" + sensorID + '\'' +
+                '}';
+    }
+}
+
+
+
+//////////////////////////////////////////////////////////////////gore e hubavo
         /*
 
 public class Mascota {
