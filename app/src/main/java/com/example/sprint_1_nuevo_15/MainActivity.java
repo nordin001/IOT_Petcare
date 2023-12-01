@@ -107,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         }
+        /*
     public void cerrarSesion(View view) {
         AuthUI.getInstance().signOut(getApplicationContext())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -122,6 +123,27 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
+
+         */
+
+    //------------------cerrar sesion metodo-------------------------
+    public void cerrarSesion(View view) {
+        AuthUI.getInstance().signOut(getApplicationContext())
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Intent i = new Intent(
+                                getApplicationContext (), CustomLogInActivity.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                                | Intent.FLAG_ACTIVITY_NEW_TASK
+                                | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(i);
+                        finish();
+                    }
+                });
+    }
+    //---------------------------------------------------------------------
+
     //El menu arriba para el acercade
     @Override public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);

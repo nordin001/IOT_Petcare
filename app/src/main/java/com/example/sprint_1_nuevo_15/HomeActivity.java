@@ -1,39 +1,79 @@
 package com.example.sprint_1_nuevo_15;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-
-import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 
 public class HomeActivity extends AppCompatActivity {
 
+    private MascotasAsinc mascotas;
+
     private AdaptadorFirestoreUI adaptador;
     private RecyclerView recyclerView;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
 
+
+        //-------------toolbar-------------------------
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        //------------------------------------------
+
+
         recyclerView = findViewById(R.id.recycler_view);
-        setupRecyclerView();
-        loadDataFromFirestore();
+
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        adaptador = ((Aplicacion) getApplicationContext()).adaptador;
+        adaptador.setOnItemClickListener(new View.OnClickListener() {
+            /*
+            @Override
+            public void onClick(View v) {
+                int pos = recyclerView.getChildAdapterPosition(v);
+                mostrarLugar(pos);
+            }
+        });
+
+             */
+
+        @Override
+        public void onClick(View v) {
+            int pos = recyclerView.getChildAdapterPosition(v);
+
+            // Check if the clicked item is the last one
+            if (pos == adaptador.getItemCount() - 1) {
+                // Launch EditarMascotaActivity for the last item
+                editarMascota(v);
+            } else {
+                // If not the last item, launch VistaMascotaActivity
+                mostrarLugar(pos);
+            }
+        }
+    });
+
+        mascotas = ((Aplicacion) getApplication()).mascotas;
+        recyclerView.setAdapter(adaptador);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adaptador.startListening();
+        //////////////////
     }
 
+
+/*
     private void setupRecyclerView() {
         Query query = FirebaseFirestore.getInstance()
                 .collection("mascotas")
@@ -46,10 +86,18 @@ public class HomeActivity extends AppCompatActivity {
         adaptador = new AdaptadorFirestoreUI(options, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adaptador);
+
+        adaptador.setOnItemClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int pos = recyclerView.getChildAdapterPosition(v);
+                mostrarLugar(pos);
+            }
+        });
+
+
+        adaptador.startListening();
     }
-
-
-
 
 
 
@@ -57,116 +105,80 @@ public class HomeActivity extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         MascotasLista miLista = new MascotasLista();
 
-        // Cambia el tipo de lugar solo para las mascotas y actualiza en Firestore
+        // Log the size of listaLugares before adding data to Firestore
+        Log.d("HomeActivity", "Size of listaLugares before adding to Firestore: " + miLista.listaLugares.size());
+
         for (Mascota mascota : miLista.listaLugares) {
-            // Cambia el tipo de lugar según tus necesidades
-          //  mascota.setTipoLugar("Nuevo Tipo de Lugar");
-
-
-            // Actualiza en Firestore
             db.collection("mascotas").add(mascota);
         }
 
-        // Inicia la escucha de cambios en Firestore
+        // Log the size of listaLugares after adding data to Firestore
+        Log.d("HomeActivity", "Size of listaLugares after adding to Firestore: " + miLista.listaLugares.size());
+
+        // Start listening for changes in Firestore
         adaptador.startListening();
+
+        // Log the size of listaLugares after starting to listen
+        Log.d("HomeActivity", "Size of listaLugares after starting to listen: " + miLista.listaLugares.size());
     }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        adaptador.stopListening();
-    }
-}
-
-/*
-public class HomeActivity extends AppCompatActivity {
-
-    private AdaptadorFirestoreUI adaptador;
-    private RecyclerView recyclerView;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.home);
-
-        recyclerView = findViewById(R.id.recycler_view);
-        setupRecyclerView();
-        loadDataFromFirestore();
-    }
-
-    private void setupRecyclerView() {
-        Query query = FirebaseFirestore.getInstance()
-                .collection("lugares")
-                .limit(50);
-
-        FirestoreRecyclerOptions<Mascota> options = new FirestoreRecyclerOptions.Builder<Mascota>()
-                .setQuery(query, Mascota.class)
-                .build();
-
-        adaptador = new AdaptadorFirestoreUI(options, this);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adaptador);
-    }
-
-    private void loadDataFromFirestore() {
-        // Assuming you want to add data to Firestore, you can do it here.
-        // Replace the following lines with your logic to add data to Firestore.
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        MascotasLista miLista = new MascotasLista();
-        for (Mascota lugar : miLista.listaLugares) {
-            db.collection("lugares").add(lugar);
-        }
-
-        // Start listening to changes in Firestore
-        adaptador.startListening();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        adaptador.stopListening();
-    }
-}
 
  */
+    void mostrarLugar(int pos) {
+        Intent i = new Intent(this, VistaMascotaActivity.class);
+        i.putExtra("pos", pos);
+        startActivity(i);
+    }
 
-/*
-public class HomeActivity extends AppCompatActivity {
+    public void editarMascota(View view) {
+        Intent i = new Intent(this, EditarMascotaActivity.class);
+        startActivity(i);
+    }
 
-    public static AdaptadorFirestoreUI adaptador;
-      //  private RecyclerView mRecyclerView;
 
-    private ActivityMainBinding binding;
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        adaptador.stopListening();
+    }
+
+
+    //---------------  MENU -----------------
+    @Override public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true; /** true -> el menú ya está visible*/}
+
+    @Override public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.acercaDe) {
+            lanzarAcercaDe(null);
+            return true;
+        }
+        if (id == R.id.menu_perfil) {
+            lanzarEditarPerfil(null);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    //---------------METODOS MENU----------------------
+
+
+    public void lanzarEditarPerfil(View view){
+        Intent i = new Intent(this,EditarPerfil.class);
+        startActivity(i);
+    }
+    public static class AcercaDeActivity extends AppCompatActivity {
+        @Override public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.home);
-
-
-            RecyclerView recyclerView = findViewById(R.id.recycler_view);
-            Query query = FirebaseFirestore.getInstance()
-                    .collection("lugares")
-                    .limit(50);
-            FirestoreRecyclerOptions<Lugar> opciones = new FirestoreRecyclerOptions
-                    .Builder<Lugar>().setQuery(query, Lugar.class).build();
-            adaptador = new AdaptadorFirestoreUI(opciones, this);
-            recyclerView.setAdapter(adaptador);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            LugaresLista miLista = new LugaresLista();
-            for (Lugar lugar: miLista.listaLugares) {
-                db.collection("mascotas").add(lugar);
-
-            }
-            adaptador.startListening();
+            setContentView(R.layout.acercade);
         }
-    @Override protected void onDestroy() {
-        super.onDestroy();
-        adaptador.stopListening();
+    }
+    public void lanzarAcercaDe(View view){
+        Intent i = new Intent(this, MainActivity.AcercaDeActivity.class);
+        startActivity(i);
     }
 
-}
+    //------------------ fin menu--------------------------------------
 
- */
+
+
+}
