@@ -3,7 +3,7 @@ package com.example.sprint_1_nuevo_15;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/*
 public class MascotasLista implements RepositorioLugares {
     protected List<Mascota> listaLugares ;//= añadeEjemplos();//ejemploLugares();
 
@@ -55,4 +55,60 @@ public class MascotasLista implements RepositorioLugares {
     }
 
 
+}
+
+
+ */
+import java.util.ArrayList;
+import java.util.List;
+
+public class MascotasLista implements RepositorioLugares {
+    private List<Mascota> listaMascotas;
+
+    public MascotasLista() {
+        listaMascotas = new ArrayList<>();
+        añadeEjemplos();
+    }
+
+    @Override
+    public Mascota elemento(int id) {
+        return listaMascotas.get(id);
+    }
+
+    @Override
+    public void añade(Mascota mascota) {
+        listaMascotas.add(mascota);
+    }
+
+    @Override
+    public int nuevo() {
+        Mascota mascota = new Mascota();
+        listaMascotas.add(mascota);
+        return listaMascotas.size() - 1;
+    }
+
+    @Override
+    public void borrar(int id) {
+        listaMascotas.remove(id);
+    }
+
+    @Override
+    public int tamaño() {
+        return listaMascotas.size();
+    }
+
+    @Override
+    public void actualiza(int id, Mascota mascota) {
+        listaMascotas.set(id, mascota);
+    }
+
+    public void añadeEjemplos() {
+        añade(new Mascota("Berta",
+                "Vía Verde del río Serpis. Villalonga (Valencia)",
+                -0.295058, 38.867180, TipoLugar.OTROS, "ownerID1"));
+
+        añade(new Mascota("Añadir tu mascota",
+                ".", -0.166093, 38.995656,
+                TipoLugar.AñadirMascota, "ownerID2"));
+    }
 }

@@ -4,9 +4,6 @@ public enum TipoLugar {
     OTROS ("Otros", R.drawable.perro1),
     AñadirMascota ("AñadirMascota", R.drawable.logo);
 
-
-
-
     private final String texto;
     private final int recurso;
 
