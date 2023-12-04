@@ -34,15 +34,11 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
-
-
         //-------------toolbar----------------------
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //------------------------------------------
-
         recyclerView = findViewById(R.id.recycler_view);
-
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         adaptador = ((Aplicacion) getApplicationContext()).adaptador;
         adaptador.setOnItemClickListener(new View.OnClickListener() {

@@ -104,9 +104,6 @@ public class Usuario {
         this(nombre, correo, System.currentTimeMillis());
     }
 
-    // Constructor 2
-
-    // Constructor 3
     public Usuario(String nombre, String correo, long inicioSesion, String telefono) {
         this.nombre = nombre;
         this.correo = correo;

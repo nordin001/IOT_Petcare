@@ -8,6 +8,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import android.app.Application;
@@ -23,23 +25,26 @@ import com.google.firebase.firestore.Query;
 import android.util.LruCache;
 
 public class Aplicacion extends Application {
-
     public ImageLoader lectorImagenes;
-
     public MascotasAsinc mascotas;
     public AdaptadorFirestoreUI adaptador;
-
-
-
-
-        // ... rest of your code
-
+    private String userId2;
     @Override public void onCreate() {
         super.onCreate();
         mascotas = new MascotasFirestore();
+        String userId = "11ck4jpBdvfrQKox6bYi2g7ws4H3";//pruebas
+        FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (usuario != null) {
+            userId2 = usuario.getUid();
+        } else {
+            // Handle the case when no user is logged in
+            userId2 = "defaultUserId"; // Provide a default user ID or handle it accordingly
+        }
         Query query = FirebaseFirestore.getInstance()
                 .collection("mascotas")
-                .limit(2);
+                .whereEqualTo("userid",userId2)  // Replace "userId" with the actual field name in the users collection
+                .limit(5);
         FirestoreRecyclerOptions<Mascota> opciones =new FirestoreRecyclerOptions
                 .Builder<Mascota>().setQuery(query, Mascota.class).build();
         //adaptador = new AdaptadorFirestoreUI(opciones, this);
@@ -59,5 +64,4 @@ public class Aplicacion extends Application {
                     }
                 });
     }
-
 }

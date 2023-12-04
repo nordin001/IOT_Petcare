@@ -146,7 +146,7 @@ public class MascotasFirestore implements MascotasAsinc {
 
     @Override
     public void añade(Mascota mascota, String userId) {
-        mascota.setOwnerID(userId);
+        mascota.setUserid(userId);
         mascotas.add(mascota);
     }
 
