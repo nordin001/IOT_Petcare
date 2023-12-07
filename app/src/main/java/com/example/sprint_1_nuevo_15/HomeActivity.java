@@ -42,15 +42,7 @@ public class HomeActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         adaptador = ((Aplicacion) getApplicationContext()).adaptador;
         adaptador.setOnItemClickListener(new View.OnClickListener() {
-            /*
-            @Override
-            public void onClick(View v) {
-                int pos = recyclerView.getChildAdapterPosition(v);
-                mostrarLugar(pos);
-            }
-        });
 
-             */
 
         @Override
         public void onClick(View v) {
