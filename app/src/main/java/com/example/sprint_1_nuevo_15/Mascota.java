@@ -11,6 +11,26 @@ public class Mascota {
     private String sensorID;
     private boolean genero;
 
+    public double getHumedad() {
+        return humedad;
+    }
+
+    public void setHumedad(double humedad) {
+        this.humedad = humedad;
+    }
+
+    public double getTemperatura() {
+        return temperatura;
+    }
+
+    public void setTemperatura(double temperatura) {
+        this.temperatura = temperatura;
+    }
+
+    private double humedad;
+    private double temperatura;
+
+
     public boolean isGenero() {
         return genero;
     }

@@ -22,22 +22,18 @@ import androidx.appcompat.widget.Toolbar;
 public class VistaMascotaActivity extends AppCompatActivity {
     private MascotasAsinc lugares;
     private int pos;
-    private Mascota lugar;
+    private Mascota mascota;
     // private LugaresFirestore lugar;
-    public CasosDeUsoMascota usoLugar;
+    public CasosDeUsoMascota usoMascota;
     private Uri uriUltimaFoto;
     private AdaptadorFirestoreUI adaptador;
     public TextView peso,humedad,temperatura;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vista_mascota);
-        peso=findViewById(R.id.peso);
-        humedad=findViewById(R.id.humedad);
-        temperatura=findViewById(R.id.temperatura);
-        lugares = ((Aplicacion) getApplication()).mascotas;
-        adaptador = ((Aplicacion) getApplication()).adaptador;
         Bundle extras = getIntent().getExtras();
         if (extras != null && extras.containsKey("pos")) {
             pos = extras.getInt("pos", 0);
@@ -45,9 +41,8 @@ public class VistaMascotaActivity extends AppCompatActivity {
                 int itemCount = adaptador.getItemCount();
                 Log.d("VistaMascotaActivity", "Adapter item count: " + itemCount);
                 if (itemCount > 0 && pos >= 0 && pos < itemCount) {
-                    lugar = adaptador.getItem(pos);
-
-                    if (lugar != null) {
+                    mascota = adaptador.getItem(pos);
+                    if (mascota != null) {
                         actualizaVistas();
                     } else {
                         Log.e("VistaMascotaActivity", "Error: lugar is null");
@@ -61,18 +56,14 @@ public class VistaMascotaActivity extends AppCompatActivity {
         } else {
             Log.e("VistaMascotaActivity", "Error: Intent extras do not contain 'pos'");
         }
-
         adaptador = ((Aplicacion) getApplication()).adaptador;
-        lugar = adaptador.getItem(pos);
+        mascota = adaptador.getItem(pos);
         actualizaVistas();
         //-------------toolbar-------------------------
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //------------------------------------------
-        usoLugar = new CasosDeUsoMascota(this, lugares);
-
-
-
+        usoMascota = new CasosDeUsoMascota(this, lugares);
         ///-----------btootn gps-----------------------
         ImageView imageView4 = findViewById(R.id.imageView4);
 
@@ -91,23 +82,28 @@ public class VistaMascotaActivity extends AppCompatActivity {
     public void actualizaVistas() {
         TextView nombre = findViewById(R.id.nombre);
         ImageView logoTipo = findViewById(R.id.foto);
-       // TextView tipo = findViewById(R.id.tipo);
         TextView direccion = findViewById(R.id.direccion);
-        TextView telefono = findViewById(R.id.direccion2);
+        TextView edad =findViewById(R.id.edad);
+        peso=findViewById(R.id.peso);
+        humedad=findViewById(R.id.humedad);
+        temperatura=findViewById(R.id.temperatura);
+        lugares = ((Aplicacion) getApplication()).mascotas;
+        adaptador = ((Aplicacion) getApplication()).adaptador;
 
-        nombre.setText(lugar.getNombre());
        // logoTipo.setImageResource(lugar.getTipo().getRecurso());
-
-        direccion.setText(lugar.getDireccion());
-
-
+        nombre.setText(mascota.getNombre());
+        direccion.setText(mascota.getDireccion());
+        peso.setText(String.valueOf(mascota.getPeso()));
+        edad.setText(String.valueOf(mascota.getEdad()));
+        humedad.setText(String.valueOf(mascota.getHumedad()));
+        temperatura.setText(String.valueOf(mascota.getTemperatura()));
         // Check and hide TextViews when information is empty
-        checkAndHideEmptyViews(direccion, lugar.getDireccion());
+        checkAndHideEmptyViews(direccion, mascota.getDireccion());
 
 
 
      //   NetworkImageView imageView = findViewById(R.id.foto); // Reference to your ImageView
-        String uri = lugar.getFoto(); // Replace with the actual URI source
+        String uri = mascota.getFoto(); // Replace with the actual URI source
 
     }
 
