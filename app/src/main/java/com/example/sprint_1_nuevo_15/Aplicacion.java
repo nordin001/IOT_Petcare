@@ -49,7 +49,6 @@ public class Aplicacion extends Application {
                 .Builder<Mascota>().setQuery(query, Mascota.class).build();
         //adaptador = new AdaptadorFirestoreUI(opciones, this);
         adaptador = new AdaptadorFirestoreUI(getApplicationContext(), opciones);
-
         // Inicialización Volley (En Applicaction, para hacerlo solo una vez)
         RequestQueue colaPeticiones = Volley.newRequestQueue(this);
         lectorImagenes = new ImageLoader(colaPeticiones,

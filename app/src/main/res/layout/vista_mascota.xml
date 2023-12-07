@@ -269,7 +269,7 @@
                         app:srcCompat="@drawable/img_3" />
 
                     <TextView
-                        android:id="@+id/textView7"
+                        android:id="@+id/temperatura"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
@@ -280,7 +280,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView8"
+                        android:id="@+id/humedad"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
@@ -288,7 +288,7 @@
                         android:text="Humedad"
                         android:textSize="15sp"
                         app:layout_constraintStart_toEndOf="@+id/imageView6"
-                        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                        app:layout_constraintTop_toBottomOf="@+id/temperatura" />
 
                     <ImageView
                         android:id="@+id/imageView6"

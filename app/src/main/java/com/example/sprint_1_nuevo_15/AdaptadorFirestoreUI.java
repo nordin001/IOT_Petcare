@@ -31,7 +31,6 @@ public class AdaptadorFirestoreUI extends
         FirestoreRecyclerAdapter<Mascota, AdaptadorFirestoreUI.ViewHolder> {
     private Context context;
     protected View.OnClickListener onClickListener;
-
     public AdaptadorFirestoreUI(Context context,
                      @NonNull FirestoreRecyclerOptions<Mascota> options) {
         super(options);
@@ -69,7 +68,7 @@ public class AdaptadorFirestoreUI extends
         holder.direccion.setText(mascota.getDireccion());
         holder.peso.setText(Double.toString(mascota.getPeso()));
         holder.edad.setText(Integer.toString(mascota.getEdad()));
-        if(mascota.isGenero()==true){
+        if(mascota.isGenero()==true){//cambiar el foto del sexo depende de la bs
             holder.fotoSexo.setImageResource(R.drawable.img_5);
         }
         else {  holder.fotoSexo.setImageResource(R.drawable.img_6);}
