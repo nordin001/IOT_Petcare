@@ -38,8 +38,7 @@ android {
 
 dependencies {
 
-implementation ("com.android.support:multidex:1.0.3")
-
+    implementation ("com.android.support:multidex:1.0.3")
     implementation("com.google.firebase:firebase-firestore:24.9.1")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
@@ -59,4 +58,27 @@ implementation ("com.android.support:multidex:1.0.3")
     implementation("com.google.firebase:firebase-firestore:24.9.1")
     //recycler Firestore
     implementation("com.firebaseui:firebase-ui-firestore:8.0.2")
+
+    // twiter
+    // Import the BoM for the Firebase platform
+    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+
+    // Add the dependency for the Firebase Authentication library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation("com.google.firebase:firebase-auth")
+
+    //google map
+    implementation ("com.google.android.gms:play-services-maps:18.1.0")
+
+
+    //     implementation ("com.twitter.sdk.android:twitter-core:3.1.1")
+
+    ///implementation ("com.twitter.sdk.android:twitter-core:4.4.0")
+    //implementation ("com.twitter.sdk.android:twitter:4.4.0")
+
+    //adaptador firebase
+    implementation ("com.github.bumptech.glide:glide:4.12.0") // Use the latest version available
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
+
+
 }

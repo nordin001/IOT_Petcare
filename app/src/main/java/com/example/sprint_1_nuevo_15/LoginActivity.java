@@ -52,14 +52,14 @@ public class LoginActivity extends AppCompatActivity {
             List<AuthUI.IdpConfig> providers = Arrays.asList(
                     new AuthUI.IdpConfig.PhoneBuilder().build(),
                     new AuthUI.IdpConfig.EmailBuilder().build(),
-                    new AuthUI.IdpConfig.GoogleBuilder().build());
+                    new AuthUI.IdpConfig.GoogleBuilder().build(),
+                    new AuthUI.IdpConfig.TwitterBuilder().build());
             startActivityForResult(
                     AuthUI.getInstance().createSignInIntentBuilder()
                             .setAvailableProviders(providers)
                             .setIsSmartLockEnabled(false)
                             .setLogo(R.drawable.logo)
                             .setTheme(R.style.FirebaseUITema)
-
                             .build(),
                     RC_SIGN_IN);
         }
