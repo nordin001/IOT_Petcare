@@ -20,9 +20,6 @@ public class HomeActivity extends AppCompatActivity {
     private AdaptadorFirestoreUI adaptador;
     private RecyclerView recyclerView;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
