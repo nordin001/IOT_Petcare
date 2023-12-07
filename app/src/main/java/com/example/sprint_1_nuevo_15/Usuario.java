@@ -1,5 +1,6 @@
 package com.example.sprint_1_nuevo_15;
 
+import java.util.ArrayList;
 import java.util.List;
 /*
 public class Usuario {
@@ -79,7 +80,15 @@ public class Usuario {
     private String telefono;
 
     // Default constructor needed for Firestore serialization
+  /*  public Usuario() {
+    }
+
+
+   */
+    // Constructor 1
+    // Default constructor needed for Firestore serialization
     public Usuario() {
+        mascotaIds = new ArrayList<>(); // Initialize the list
     }
 
     // Constructor 1
@@ -87,6 +96,7 @@ public class Usuario {
         this.nombre = nombre;
         this.correo = correo;
         this.inicioSesion = inicioSesion;
+        this.mascotaIds = new ArrayList<>(); // Initialize the list
     }
 
     // Constructor 2
@@ -94,12 +104,12 @@ public class Usuario {
         this(nombre, correo, System.currentTimeMillis());
     }
 
-    // Constructor 3
     public Usuario(String nombre, String correo, long inicioSesion, String telefono) {
         this.nombre = nombre;
         this.correo = correo;
         this.inicioSesion = inicioSesion;
         this.telefono = telefono;
+        this.mascotaIds = new ArrayList<>(); // Initialize the list
     }
 
     // Getters and setters...
@@ -107,6 +117,21 @@ public class Usuario {
     public List<String> getMascotaIds() {
         return mascotaIds;
     }
+
+    // Getters and setters...
+
+
+
+    public void addMascotaId(String mascotaId) {
+        mascotaIds.add(mascotaId);
+    }
+
+    public void removeMascotaId(String mascotaId) {
+        mascotaIds.remove(mascotaId);
+    }
+
+
+
 
     public void setMascotaIds(List<String> mascotaIds) {
         this.mascotaIds = mascotaIds;

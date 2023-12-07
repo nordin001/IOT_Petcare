@@ -12,6 +12,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -19,21 +25,17 @@ public class HomeActivity extends AppCompatActivity {
 
     private AdaptadorFirestoreUI adaptador;
     private RecyclerView recyclerView;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
-
-
-        //-------------toolbar-------------------------
+        //-------------toolbar----------------------
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //------------------------------------------
-
-
         recyclerView = findViewById(R.id.recycler_view);
-
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         adaptador = ((Aplicacion) getApplicationContext()).adaptador;
         adaptador.setOnItemClickListener(new View.OnClickListener() {
@@ -54,6 +56,9 @@ public class HomeActivity extends AppCompatActivity {
             // Check if the clicked item is the last one
             if (pos == adaptador.getItemCount() - 1) {
                 // Launch EditarMascotaActivity for the last item
+
+
+
                 editarMascota(v);
             } else {
                 // If not the last item, launch VistaMascotaActivity
@@ -67,8 +72,14 @@ public class HomeActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adaptador.startListening();
         //////////////////
+
     }
 
+    void mostrarMascota(int pos) {
+        Intent i = new Intent(this, VistaMascotaActivity.class);
+        i.putExtra("pos", pos);
+        startActivity(i);
+    }
 
 /*
     private void setupRecyclerView() {
