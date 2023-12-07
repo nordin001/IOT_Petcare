@@ -101,24 +101,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         }
-        /*
-    public void cerrarSesion(View view) {
-        AuthUI.getInstance().signOut(getApplicationContext())
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Intent i = new Intent(
-                                getApplicationContext (),LoginActivity.class);
-                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-                                | Intent.FLAG_ACTIVITY_NEW_TASK
-                                | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(i);
-                        finish();
-                    }
-                });
-    }
 
-         */
 
     //------------------cerrar sesion metodo-------------------------
     public void cerrarSesion(View view) {
