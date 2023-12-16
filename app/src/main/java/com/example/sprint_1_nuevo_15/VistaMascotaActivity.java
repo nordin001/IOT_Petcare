@@ -44,6 +44,7 @@ public class VistaMascotaActivity extends AppCompatActivity {
                     mascota = adaptador.getItem(pos);
                     if (mascota != null) {
                         actualizaVistas();
+
                     } else {
                         Log.e("VistaMascotaActivity", "Error: lugar is null");
                     }
@@ -175,6 +176,7 @@ public class VistaMascotaActivity extends AppCompatActivity {
     // Add a method to open MapsActivity
     private void abrirMapsActivity() {
         Intent intent = new Intent(this, mapaActivity.class);
+        intent.putExtra("pos", pos);
         startActivity(intent);
     }
 }
