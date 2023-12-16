@@ -11,6 +11,9 @@ public class Mascota {
     private String sensorID;
     private boolean genero;
 
+
+
+
     public double getHumedad() {
         return humedad;
     }
