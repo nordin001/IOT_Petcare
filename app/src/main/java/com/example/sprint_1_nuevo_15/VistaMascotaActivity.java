@@ -168,6 +168,7 @@ public class VistaMascotaActivity extends AppCompatActivity {
     // METODOS
     public void editarMascota(View view){
         Intent i = new Intent(this,EditarMascotaActivity.class);
+        i.putExtra("pos", pos);
         startActivity(i);
     }
 

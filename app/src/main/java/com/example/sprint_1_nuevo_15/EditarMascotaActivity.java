@@ -14,9 +14,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class EditarMascotaActivity extends AppCompatActivity {
+    //--------editar mascota ---------------
+    EditText editarNombre;
+    EditText editarDierrecion;
+    EditText editarPesp;
+    EditText editarEdad;
+
+    //-----------------------------------
 
     private MascotasAsinc lugares;
     private AdaptadorFirestoreUI adaptador;
+    private Mascota mascota;
+    // private LugaresFirestore lugar;
+    public CasosDeUsoMascota usoMascota;
     private int pos;
 
     // Add other necessary fields for your UI elements (e.g., EditText fields)
@@ -31,22 +41,27 @@ public class EditarMascotaActivity extends AppCompatActivity {
 
         // Retrieve position from the intent
         Bundle extras = getIntent().getExtras();
+        adaptador = ((Aplicacion) getApplication()).adaptador;
+        mascota = adaptador.getItem(pos);
+        usoMascota = new CasosDeUsoMascota(this, lugares);
         if (extras != null && extras.containsKey("pos")) {
             pos = extras.getInt("pos", 0);
+            // Initialize EditText fields
+            editarNombre = findViewById(R.id.editarNombre);
+            editarDierrecion= findViewById(R.id.editarDierrecion);
+            editarPesp= findViewById(R.id.editarPesp);
+            editarEdad = findViewById(R.id.editarEdad);
 
-            // Retrieve the data based on position
-            Mascota selectedMascota = adaptador.getItem(pos);
+            editarNombre.setText(mascota.getNombre());
+            editarDierrecion.setText(mascota.getDireccion());
+           editarPesp.setText(String.valueOf(mascota.getPeso()));
+            editarEdad.setText(String.valueOf(mascota.getEdad()));
+          //  editarEdad.setText((int) mascota.getEdad());
 
-            // For example, if you have an EditText for the name:
-            EditText nombreEditText = findViewById(R.id.editTextNombre);
-            nombreEditText.setText(selectedMascota.getNombre());
-
-            // Repeat the above steps for other UI elements
 
         } else {
             Log.e("EditarMascotaActivity", "Error: Intent extras do not contain 'pos'");
         }
-
 
         //-------------toolbar-------------------------
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -92,9 +107,5 @@ public class EditarMascotaActivity extends AppCompatActivity {
 
     //------------------ fin menu--------------------------------------
 
-
-    // Add methods to handle saving or updating the edited data
-
-    // ...
 
 }
