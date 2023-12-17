@@ -84,9 +84,8 @@ public class mapaActivity extends FragmentActivity implements
         mapa.moveCamera(CameraUpdateFactory.newLatLngZoom(UPV, 15));
         mapa.addMarker(new MarkerOptions()
                 .position(UPV)
-                .title("" +
-                        "")
-                .snippet("Universidad Politécnica de Valencia")
+                .title("La ultima ubicacio de su mascota :")
+                .snippet(mascota.getNombre())
                 .icon(BitmapDescriptorFactory
                         .fromResource(android.R.drawable.ic_menu_compass))
                 .anchor(0.5f, 0.5f));
