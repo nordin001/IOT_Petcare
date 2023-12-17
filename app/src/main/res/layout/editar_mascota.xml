@@ -274,13 +274,14 @@
 
     <Button
         android:id="@+id/button5"
+        style="@style/EstiloBotonNaranja"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        android:onClick="ajustarCambios2"
         android:text="Ajustar cambios"
         app:layout_constraintStart_toStartOf="@+id/imageView8"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8"
-        style="@style/EstiloBotonNaranja"/>
+        app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
     <Button
         android:id="@+id/button6"
