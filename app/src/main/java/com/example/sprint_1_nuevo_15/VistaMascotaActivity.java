@@ -19,6 +19,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import static com.example.comun.Mqtt.*;
+
+import com.example.comun.Mqtt;
+
 public class VistaMascotaActivity extends AppCompatActivity {
     private MascotasAsinc lugares;
     private int pos;
@@ -28,12 +32,16 @@ public class VistaMascotaActivity extends AppCompatActivity {
     private Uri uriUltimaFoto;
     private AdaptadorFirestoreUI adaptador;
     public TextView peso,humedad,temperatura;
+    Mqtt mqtt;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vista_mascota);
+        //Configuracion de mqtt
+        mqtt = new Mqtt();
+        Log.d(TAG, "conectado a " + mqtt.broker);
         Bundle extras = getIntent().getExtras();
         if (extras != null && extras.containsKey("pos")) {
             pos = extras.getInt("pos", 0);
@@ -179,6 +187,27 @@ public class VistaMascotaActivity extends AppCompatActivity {
         Intent intent = new Intent(this, mapaActivity.class);
         intent.putExtra("pos", pos);
         startActivity(intent);
+    }
+    //---------------------------------------
+    //--------mandar mensaje mqtt------------
+    //--------------------------------------
+    public void encenderLuz(View v){
+        String s = mqtt.publicar("a", "luz");
+        Log.d(TAG, s);
+    }
+
+    public void capturarImagen(View v){
+        String s = mqtt.publicar("a", "foto");
+        Log.d(TAG, s);
+    }
+
+    //cuando salimos de la actividad se disconecta de la app
+
+    @Override
+    public void onDestroy() {
+        String s = mqtt.desconectar();
+        Log.d(TAG, s);
+        super.onDestroy();
     }
 }
 
