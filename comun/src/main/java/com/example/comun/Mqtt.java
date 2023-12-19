@@ -1,6 +1,8 @@
 package com.example.comun;
 
+import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
@@ -17,6 +19,11 @@ public class Mqtt {
     public Mqtt() {
         try {
             client = new MqttClient(broker3, clientId, new MemoryPersistence());
+            MqttConnectOptions connOpts = new MqttConnectOptions();
+            connOpts.setCleanSession(true);
+            connOpts.setKeepAliveInterval(60);
+            connOpts.setWill(topicRoot+"WillTopic","App desconectada".getBytes(),
+                    qos, false);
             client.connect();
         } catch (MqttException e) {
             throw new RuntimeException(e);
@@ -44,5 +51,16 @@ public class Mqtt {
         }
     }
 
+    public String suscribir (String topic, MqttCallback listener) {
+        try {
+            client.subscribe(topicRoot + topic, qos);
+            client.setCallback(listener);
+            return "Suscrito a " + topicRoot + topic;
+        } catch (MqttException e) {
+            return "Error al suscribir." + e;
+        }
+    }
 
-}
+
+
+        }

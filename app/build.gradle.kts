@@ -83,7 +83,8 @@ dependencies {
     //mqtt
     implementation("org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5")
 
-
+    //firebase storage
+    implementation("com.google.firebase:firebase-storage")
 
 
 }

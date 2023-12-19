@@ -40,7 +40,7 @@ public class VistaMascotaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vista_mascota);
         //Configuracion de mqtt
-        mqtt = new Mqtt();
+
         Log.d(TAG, "conectado a " + mqtt.broker);
         Bundle extras = getIntent().getExtras();
         if (extras != null && extras.containsKey("pos")) {
@@ -192,13 +192,17 @@ public class VistaMascotaActivity extends AppCompatActivity {
     //--------mandar mensaje mqtt------------
     //--------------------------------------
     public void encenderLuz(View v){
+        mqtt = new Mqtt();
         String s = mqtt.publicar("a", "luz");
         Log.d(TAG, s);
+        mqtt.desconectar();
     }
 
     public void capturarImagen(View v){
+        mqtt = new Mqtt();
         String s = mqtt.publicar("a", "foto");
         Log.d(TAG, s);
+        mqtt.desconectar();
     }
 
     //cuando salimos de la actividad se disconecta de la app
