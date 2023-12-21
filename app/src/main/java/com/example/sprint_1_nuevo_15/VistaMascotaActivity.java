@@ -3,6 +3,7 @@ package com.example.sprint_1_nuevo_15;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,11 +18,20 @@ import android.widget.ImageView;
 
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import static com.example.comun.Mqtt.*;
 
 import com.example.comun.Mqtt;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.File;
+import java.io.IOException;
 
 public class VistaMascotaActivity extends AppCompatActivity {
     private MascotasAsinc lugares;
@@ -32,15 +42,18 @@ public class VistaMascotaActivity extends AppCompatActivity {
     private Uri uriUltimaFoto;
     private AdaptadorFirestoreUI adaptador;
     public TextView peso,humedad,temperatura;
+    public ImageView firestoragepic;
     Mqtt mqtt;
+    private StorageReference storageRef;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vista_mascota);
+        storageRef = FirebaseStorage.getInstance().getReference();
         //Configuracion de mqtt
-        mqtt = new Mqtt();
+
         Log.d(TAG, "conectado a " + mqtt.broker);
         Bundle extras = getIntent().getExtras();
         if (extras != null && extras.containsKey("pos")) {
@@ -75,6 +88,7 @@ public class VistaMascotaActivity extends AppCompatActivity {
         usoMascota = new CasosDeUsoMascota(this, lugares);
         ///-----------btootn gps-----------------------
         ImageView imageView4 = findViewById(R.id.imageView4);
+        firestoragepic=findViewById(R.id.firestoragepic);
 
         // Set an OnClickListener for the ImageView
         imageView4.setOnClickListener(new View.OnClickListener() {
@@ -192,13 +206,45 @@ public class VistaMascotaActivity extends AppCompatActivity {
     //--------mandar mensaje mqtt------------
     //--------------------------------------
     public void encenderLuz(View v){
+        mqtt = new Mqtt();
         String s = mqtt.publicar("a", "luz");
         Log.d(TAG, s);
+        mqtt.desconectar();
     }
 
     public void capturarImagen(View v){
+        mqtt = new Mqtt();
         String s = mqtt.publicar("a", "foto");
         Log.d(TAG, s);
+        mqtt.desconectar();
+        File localFile = null;
+        try {
+            localFile = File.createTempFile("image", "jpg"); //nombre y extensión
+        } catch (IOException e) {
+            e.printStackTrace(); //Si hay problemas mostramos la causa
+        }
+        final String path = localFile.getAbsolutePath();
+        Log.d("Almacenamiento", "creando fichero: " + path);
+        //--------------------------------------------------------------
+        StorageReference ficheroRef = storageRef.child("imagenes/imagen.jpg");
+        ficheroRef.getFile(localFile)
+                .addOnSuccessListener(new
+                                              OnSuccessListener<FileDownloadTask.TaskSnapshot>(){
+                                                  @Override
+                                                  public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot){
+                                                      Log.d("Almacenamiento", "Fichero bajado" + path);
+                                                      //Aquí ya disponemos del fichero
+                                                      firestoragepic.setImageBitmap(BitmapFactory.decodeFile(path));
+                                                  }
+                                              }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        Log.e("Almacenamiento", "ERROR: bajando fichero");
+                    }
+                });
+        firestoragepic.setImageBitmap(BitmapFactory.decodeFile(path));
+
+
     }
 
     //cuando salimos de la actividad se disconecta de la app

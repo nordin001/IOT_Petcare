@@ -57,7 +57,6 @@ public class EditarMascotaActivity extends AppCompatActivity {
         lugares = ((Aplicacion) getApplication()).mascotas;
         adaptador = ((Aplicacion) getApplication()).adaptador;
 
-
         // Retrieve position from the intent
         Bundle extras = getIntent().getExtras();
         adaptador = ((Aplicacion) getApplication()).adaptador;
