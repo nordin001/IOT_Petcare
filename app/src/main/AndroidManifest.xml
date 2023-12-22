@@ -55,6 +55,7 @@
 
         <activity android:name=".LoginActivity">
 
+
         </activity>
         <activity android:name=".CustomRegistroActivity"/>
 
@@ -62,6 +63,7 @@
             android:value="@string/google_maps_key" />
 
         <activity android:name=".mapaActivity"/>
+        <activity android:name=".AniadirMascotaActivity"/>
 
     </application>
 
