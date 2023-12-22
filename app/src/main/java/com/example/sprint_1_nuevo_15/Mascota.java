@@ -39,6 +39,13 @@ public class Mascota {
     public void setGenero(boolean genero) {
         this.genero = genero;
     }
+    // Constructor
+    public Mascota(String nombre, String direccion, double peso, int edad) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.peso = peso;
+        this.edad = edad;
+    }
 
     // Constructors
     public Mascota(String nombre, String direccion, double longitud, double latitud, String userid, String sensorID) {

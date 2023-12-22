@@ -46,16 +46,18 @@ public class HomeActivity extends AppCompatActivity {
             int pos = recyclerView.getChildAdapterPosition(v);
 
             // Check if the clicked item is the last one
+
             if (pos == adaptador.getItemCount() - 1) {
                 // Launch EditarMascotaActivity for the last item
 
-
-
                 editarMascota(v);
-            } else {
+            }
+
+            else {
                 // If not the last item, launch VistaMascotaActivity
                 mostrarLugar(pos);
             }
+
         }
     });
 
@@ -130,7 +132,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void editarMascota(View view) {
-        Intent i = new Intent(this, EditarMascotaActivity.class);
+        Intent i = new Intent(this, AniadirMascotaActivity.class);
         startActivity(i);
     }
 
