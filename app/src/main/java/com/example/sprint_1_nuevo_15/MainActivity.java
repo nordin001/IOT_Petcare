@@ -1,6 +1,8 @@
 package com.example.sprint_1_nuevo_15;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -145,12 +147,25 @@ public class MainActivity extends AppCompatActivity {
             lanzarEditarPerfil(null);
             return true;
         }
+        if (id == R.id.descubrir) {
+
+            lanzarDescubrir(null);
+          //  getMenuInflater().inflate(R.menu.menu_main, item.getSubMenu());
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
 
+
+
     public void lanzarEditarPerfil(View view){
         Intent i = new Intent(this,EditarPerfil.class);
+        startActivity(i);
+    }
+
+    public void lanzarDescubrir(View view){
+        Intent i = new Intent(this,DescubrirActivity.class);
         startActivity(i);
     }
 

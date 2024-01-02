@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,6 +26,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private AdaptadorFirestoreUI adaptador;
     private RecyclerView recyclerView;
+    SwipeRefreshLayout swipeRefreshLayout ;
     FirebaseUser user;
 
     @Override
@@ -35,37 +37,48 @@ public class HomeActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //------------------------------------------
+        //--------------refresh recycle view--------
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
         recyclerView = findViewById(R.id.recycler_view);
+        //--------------defining  the recycle view -----------------
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         adaptador = ((Aplicacion) getApplicationContext()).adaptador;
         adaptador.setOnItemClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int pos = recyclerView.getChildAdapterPosition(v);
 
+                // Check if the clicked item is the last one
 
-        @Override
-        public void onClick(View v) {
-            int pos = recyclerView.getChildAdapterPosition(v);
+                if (pos == adaptador.getItemCount() - 1) {
+                    // Launch EditarMascotaActivity for the last item
 
-            // Check if the clicked item is the last one
+                    editarMascota(v);
+                }
 
-            if (pos == adaptador.getItemCount() - 1) {
-                // Launch EditarMascotaActivity for the last item
+                else {
+                    // If not the last item, launch VistaMascotaActivity
+                    mostrarLugar(pos);
+                }
 
-                editarMascota(v);
             }
-
-            else {
-                // If not the last item, launch VistaMascotaActivity
-                mostrarLugar(pos);
-            }
-
-        }
-    });
-
+        });
         mascotas = ((Aplicacion) getApplication()).mascotas;
         recyclerView.setAdapter(adaptador);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adaptador.startListening();
-        //////////////////
+        //---------------------------------------
+        //------refresh the recycle view---------
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Implement the code to refresh your data
+                // For example, you may want to fetch new data from a server or reload from a local source
+                ((Aplicacion) getApplicationContext()).refreshData();
+                // After refreshing, call setRefreshing(false) to indicate that the refresh operation is complete
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
     }
 
@@ -180,7 +193,4 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     //------------------ fin menu--------------------------------------
-
-
-
 }

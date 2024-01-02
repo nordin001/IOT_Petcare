@@ -63,4 +63,30 @@ public class Aplicacion extends Application {
                     }
                 });
     }
+
+    public void refreshData() {
+        String userId = "11ck4jpBdvfrQKox6bYi2g7ws4H3"; // pruebas
+        FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (usuario != null) {
+            userId = usuario.getUid();
+        } else {
+            // Handle the case when no user is logged in
+            userId = "defaultUserId"; // Provide a default user ID or handle it accordingly
+        }
+
+        Query newQuery = FirebaseFirestore.getInstance()
+                .collection("mascotas")
+                .whereEqualTo("userid", userId)
+                .limit(5);
+
+        FirestoreRecyclerOptions<Mascota> newOptions = new FirestoreRecyclerOptions
+                .Builder<Mascota>().setQuery(newQuery, Mascota.class).build();
+
+        // Update the adapter with the new data
+        adaptador.updateOptions(newOptions);
+
+        // Notify the adapter that the data set has changed
+        adaptador.notifyDataSetChanged();
+    }
 }

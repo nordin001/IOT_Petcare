@@ -207,14 +207,14 @@ public class VistaMascotaActivity extends AppCompatActivity {
     //--------------------------------------
     public void encenderLuz(View v){
         mqtt = new Mqtt();
-        String s = mqtt.publicar("a", "luz");
+        String s = mqtt.publicar("luz", "luz");
         Log.d(TAG, s);
         mqtt.desconectar();
     }
 
     public void capturarImagen(View v){
         mqtt = new Mqtt();
-        String s = mqtt.publicar("a", "foto");
+        String s = mqtt.publicar("foto", "foto");
         Log.d(TAG, s);
         mqtt.desconectar();
         File localFile = null;

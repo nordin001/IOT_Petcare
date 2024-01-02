@@ -10,7 +10,7 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="PetCare"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -64,7 +64,7 @@
 
         <activity android:name=".mapaActivity"/>
         <activity android:name=".AniadirMascotaActivity"/>
-
+<activity android:name=".DescubrirActivity"/>
     </application>
 
 </manifest>

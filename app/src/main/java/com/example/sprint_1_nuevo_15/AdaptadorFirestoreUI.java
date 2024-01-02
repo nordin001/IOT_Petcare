@@ -86,4 +86,10 @@ public class AdaptadorFirestoreUI extends
     public void setOnItemClickListener(View.OnClickListener onClick) {
         onClickListener = onClick;
     }
+
+    public void updateOptions(@NonNull FirestoreRecyclerOptions<Mascota> options) {
+        // Update the FirestoreRecyclerOptions
+        super.updateOptions(options);
+    }
+
 }
