@@ -1,10 +1,15 @@
 package com.example.sprint_1_nuevo_15;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import  android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
@@ -19,7 +24,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.Map;
 
-public class mapaActivity extends FragmentActivity implements
+public class mapaActivity extends AppCompatActivity implements
         OnMapReadyCallback, GoogleMap.OnMapClickListener {
     private GoogleMap mapa;
     private MascotasAsinc lugares;
@@ -30,9 +35,13 @@ public class mapaActivity extends FragmentActivity implements
     private double latitude ,longitude;
     private  LatLng UPV ;//=new LatLng(38.995656,-0.166093);
     private GeoPunto geopunto;
+    Toolbar toolbar;
+    @SuppressLint("MissingInflatedId")
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gps);
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         SupportMapFragment mapFragment = (SupportMapFragment)
                 getSupportFragmentManager().findFragmentById(R.id.mapa);
         mapFragment.getMapAsync(this);
@@ -111,5 +120,46 @@ public class mapaActivity extends FragmentActivity implements
         mapa.addMarker(new MarkerOptions().position(puntoPulsado)
                 .icon(BitmapDescriptorFactory
                         .defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+    }
+
+    public void lanzarEditarPerfil(View view){
+        Intent i = new Intent(this,EditarPerfil.class);
+        startActivity(i);
+    }
+    public static class AcercaDeActivity extends AppCompatActivity {
+        @Override public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.acercade);
+        }
+    }
+    public void lanzarAcercaDe(View view){
+        Intent i = new Intent(this, MainActivity.AcercaDeActivity.class);
+        startActivity(i);
+    }
+    public void lanzarDescubrir(View view){
+        Intent i = new Intent(this,DescubrirActivity.class);
+        startActivity(i);
+    }
+    @Override public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true; /** true -> el menú ya está visible*/}
+
+    @Override public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.acercaDe) {
+            lanzarAcercaDe(null);
+            return true;
+        }
+        if (id == R.id.menu_perfil) {
+            lanzarEditarPerfil(null);
+            return true;
+        }
+        if (id == R.id.descubrir) {
+
+            lanzarDescubrir(null);
+            //  getMenuInflater().inflate(R.menu.menu_main, item.getSubMenu());
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
