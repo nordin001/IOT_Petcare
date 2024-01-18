@@ -92,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
             foto.setImageUrl(urlImagen.toString(), lectorImagenes);}
 
 
-
         Button home2Button = findViewById(R.id.home2);
 
         home2Button.setOnClickListener(new View.OnClickListener() {
@@ -155,8 +154,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 
 
     public void lanzarEditarPerfil(View view){
