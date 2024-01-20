@@ -47,9 +47,12 @@
             android:name=".MainActivity$AcercaDeActivity"
             android:label="PetCare"
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
+
+
         <activity android:name=".HomeActivity"
             android:exported="false"
             />
+
         <activity android:name=".VistaMascotaActivity"/>
         <activity android:name=".EditarMascotaActivity" />
 

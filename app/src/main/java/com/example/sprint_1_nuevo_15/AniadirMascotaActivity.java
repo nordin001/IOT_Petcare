@@ -183,13 +183,23 @@ public class AniadirMascotaActivity  extends AppCompatActivity {
 
 
     //---------------  MENU -----------------
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    //---------------------------------------------------------------------
+
+    //El menu arriba para el acercade
+    @Override public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true; /** true -> el menú ya está visible*/}
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public static class AcercaDeActivity extends AppCompatActivity {
+        @Override public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.acercade);
+        }
+    }
+    public void lanzarAcercaDe(View view){
+        Intent i = new Intent(this, MainActivity.AcercaDeActivity.class);
+        startActivity(i);
+    }
+    @Override public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.acercaDe) {
             lanzarAcercaDe(null);
@@ -199,121 +209,29 @@ public class AniadirMascotaActivity  extends AppCompatActivity {
             lanzarEditarPerfil(null);
             return true;
         }
+        if (id == R.id.descubrir) {
+
+            lanzarDescubrir(null);
+            //  getMenuInflater().inflate(R.menu.menu_main, item.getSubMenu());
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
-    //---------------METODOS MENU----------------------
-    public void lanzarEditarPerfil(View view) {
-        Intent i = new Intent(this, EditarPerfil.class);
+
+
+
+    public void lanzarEditarPerfil(View view){
+        Intent i = new Intent(this,EditarPerfil.class);
         startActivity(i);
     }
 
-    public static class AcercaDeActivity extends AppCompatActivity {
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.acercade);
-        }
-    }
-
-    public void lanzarAcercaDe(View view) {
-        Intent i = new Intent(this, MainActivity.AcercaDeActivity.class);
+    public void lanzarDescubrir(View view){
+        Intent i = new Intent(this,DescubrirActivity.class);
         startActivity(i);
     }
-
 
     //------------------------------------------------------------------------------------
-    /*
-    public void  aniadirmascota(View view) {
-        // Get the updated values from EditText fields
-        String nombre = editarNombre.getText().toString();
-        String direccion = editarDierrecion.getText().toString();
-        double peso = Double.parseDouble(editarPesp.getText().toString());
-        int edad = Integer.parseInt(editarEdad.getText().toString());
-
-        // Assuming 'mascota' is an instance of your Mascota class
-        mascota.setNombre(nombre);
-        mascota.setDireccion(direccion);
-        mascota.setPeso(peso);
-        mascota.setEdad(edad);
-
-        // Get the current user
-        FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
-
-        // Get the reference to the Firestore collection and document
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference mascotaRef = db.collection("mascotas").document(usuario.getUid());
-
-        // Update the data in Firestore
-        mascotaRef
-                .set(mascota)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        // Redirect to another activity or perform any other necessary actions
-                        Intent i = new Intent(AniadirMascotaActivity.this, MainActivity.class);
-                        startActivity(i);
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        // Handle the error
-                        Toast.makeText(AniadirMascotaActivity.this, "Error updating data", Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
-
-
-
-     */
-    /*
-    private void aniadirmascota() {
-        String nombre = editarNombre.getText().toString();
-        String direccion = editarDierrecion.getText().toString();
-        double peso = Double.parseDouble(editarPesp.getText().toString());
-        int edad = Integer.parseInt(editarEdad.getText().toString());
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-
-        // Referencia al documento del usuario específico
-        DocumentReference userDocRef =  db.collection("mascotas").document(user.getUid());
-
-
-// Crea un mapa con los datos de la mascota
-        Map<String, Object> mascota = new HashMap<>();
-        mascota.put("nombre", nombre);
-        mascota.put("direccion", direccion);
-        mascota.put("peso", peso);
-        mascota.put("edad", edad);
-
-
-// Agrega la mascota al documento del usuario
-        userDocRef.collection("mascotas").add(mascota)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("aniadir", "Mascota agregada con ID: " + documentReference.getId());
-
-                        // Aquí puedes mostrar un mensaje o realizar alguna otra acción si es necesario
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.e("aniadir", "Error al agregar la mascota", e);
-                        // Maneja el error aquí si es necesario
-                    }
-                });
-
-
-
-    }
-
-
-     */
 
     private void aniadirmascota() {
         String nombre = editarNombre.getText().toString();

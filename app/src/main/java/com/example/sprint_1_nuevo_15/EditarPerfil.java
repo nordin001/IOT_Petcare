@@ -92,6 +92,9 @@ public class EditarPerfil extends AppCompatActivity {
 
     }
     //------------------fin foto de usuario
+    //---------------------------------------------------------------------
+
+    //El menu arriba para el acercade
     @Override public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true; /** true -> el menú ya está visible*/}
@@ -111,7 +114,30 @@ public class EditarPerfil extends AppCompatActivity {
             lanzarAcercaDe(null);
             return true;
         }
+        if (id == R.id.menu_perfil) {
+            lanzarEditarPerfil(null);
+            return true;
+        }
+        if (id == R.id.descubrir) {
+
+            lanzarDescubrir(null);
+            //  getMenuInflater().inflate(R.menu.menu_main, item.getSubMenu());
+            return true;
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+
+
+
+    public void lanzarEditarPerfil(View view){
+        Intent i = new Intent(this,EditarPerfil.class);
+        startActivity(i);
+    }
+
+    public void lanzarDescubrir(View view){
+        Intent i = new Intent(this,DescubrirActivity.class);
+        startActivity(i);
     }
 
 
