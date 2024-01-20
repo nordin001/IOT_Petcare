@@ -31,58 +31,59 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_margin="8dp"
-        android:layout_marginTop="30dp"
-        app:cardBackgroundColor="#FFFFFF"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="4dp">
-
-            <ImageView
-                android:id="@+id/fotos"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:contentDescription="fotografía"
-                android:src="@drawable/descubrir_mas_1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="250dp"
+            android:layout_margin="8dp"
+            android:layout_marginTop="30dp"
+            android:onClick="abrirPrimerosPasosDescubrirMas"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
 
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:text="Primeros pasos"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fotos" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="4dp">
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="356dp"
-                android:layout_height="47dp"
-                android:layout_marginTop="10dp"
-                android:text="Es muy fácil  vigilar tu mascota. Estes donde  estes."
-                android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="@+id/textView1"
-                app:layout_constraintTop_toBottomOf="@+id/textView1" />
+                <ImageView
+                    android:id="@+id/fotos"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:contentDescription="fotografía"
+                    android:src="@drawable/descubrir_mas_1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Primeros pasos"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fotos" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="356dp"
+                    android:layout_height="47dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Es muy fácil  vigilar tu mascota. Estes donde  estes."
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toStartOf="@+id/textView1"
+                    app:layout_constraintTop_toBottomOf="@+id/textView1" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
 
         <androidx.cardview.widget.CardView
@@ -91,6 +92,7 @@
             android:layout_height="250dp"
             android:layout_margin="8dp"
             android:layout_marginTop="30dp"
+            android:onClick="abrirIluminacionDescubrirMas"
             app:cardBackgroundColor="#FFFFFF"
             app:cardCornerRadius="20dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -145,6 +147,7 @@
             android:layout_height="250dp"
             android:layout_margin="8dp"
             android:layout_marginTop="30dp"
+            android:onClick="abrirSeguridadDescubrirMas"
             app:cardBackgroundColor="#FFFFFF"
             app:cardCornerRadius="20dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -156,15 +159,15 @@
                 android:layout_height="match_parent"
                 android:padding="4dp">
 
-            <ImageView
-                android:id="@+id/foto3"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:contentDescription="fotografía"
-                android:src="@drawable/descubrir_mas_3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/foto3"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:contentDescription="fotografía"
+                    android:src="@drawable/descubrir_mas_3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
                 <TextView

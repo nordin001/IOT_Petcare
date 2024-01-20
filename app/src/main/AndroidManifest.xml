@@ -65,6 +65,9 @@
         <activity android:name=".mapaActivity"/>
         <activity android:name=".AniadirMascotaActivity"/>
 <activity android:name=".DescubrirActivity"/>
+        <activity android:name=".PrimerosPasosDescubrirMasActivity"/>
+        <activity android:name=".PrimerosPasosDescubrirMasActivity$iluminacionDescubrirActivity"/>
+        <activity android:name=".PrimerosPasosDescubrirMasActivity$SeguridadDescubrirActivity"/>
     </application>
 
 </manifest>
