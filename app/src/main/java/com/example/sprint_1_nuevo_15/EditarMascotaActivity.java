@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -105,6 +106,50 @@ public class EditarMascotaActivity extends AppCompatActivity {
 
 
  */
+
+
+
+
+        //4.BORRAR DATOS
+        Button buttondELETE =findViewById(R.id.button6);
+        buttondELETE.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                lanzarPopupEliminarMascota(v);
+            }
+        });
+                /*
+
+                FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
+
+                // Get the reference to the Firestore collection and document
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+                //Vziimam ot Firestore
+                db.collection("mascotas").document(usuario.getUid())
+                        .delete()
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(EditarMascotaActivity.this, "Mascota eliminada correctamente", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(EditarMascotaActivity.this, "Error al eliminar mascota: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                //Handle error here
+                                Log.e("ERROR", e.getMessage());
+                                Toast.makeText(EditarMascotaActivity.this, "Error desconocido al eliminar mascota", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            }
+        });
+
+                 */
     }
 
 
@@ -147,6 +192,69 @@ public class EditarMascotaActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+
+    //--------------pop up delete mascota si no ---------
+    public static class PopupEliminarMascotaActivity extends AppCompatActivity {
+        @Override public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.eliminarmascotapregunta);
+            //4.BORRAR DATOS
+            Button buttonnodeleete =findViewById(R.id.btnNo);
+            buttonnodeleete .setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    lanzarhomeDe();
+                                                }
+                                            });
+
+            //4.BORRAR DATOS
+            Button buttondELETE =findViewById(R.id.btnSi);
+            buttondELETE.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
+
+                    // Get the reference to the Firestore collection and document
+                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+                    //Vziimam ot Firestore
+                    db.collection("mascotas").document(usuario.getUid())
+                            .delete()
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(PopupEliminarMascotaActivity.this, "Mascota eliminada correctamente", Toast.LENGTH_SHORT).show();
+                                        lanzarhomeDe();
+                                    } else {
+                                        Toast.makeText(PopupEliminarMascotaActivity.this, "Error al eliminar mascota: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    //Handle error here
+                                    Log.e("ERROR", e.getMessage());
+                                    Toast.makeText(PopupEliminarMascotaActivity.this, "Error desconocido al eliminar mascota", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }
+            });
+
+        }
+        private void lanzarhomeDe() {
+            Intent i = new Intent(this, HomeActivity.class);
+            startActivity(i);
+            // Asegúrate de que la actividad actual se cierre después de iniciar HomeActivity
+            finish();
+        }
+    }
+    public void lanzarPopupEliminarMascota(View view) {
+        Intent i = new Intent(this, EditarMascotaActivity.PopupEliminarMascotaActivity.class);
+        startActivity(i);
+    }
     //----- ------------- fin menu--------------------------------------
     /*
     public void ajustarCambios(View view) {
@@ -328,6 +436,33 @@ public class EditarMascotaActivity extends AppCompatActivity {
                 });
     }
 
+
+
+    //----------ELIMINAR MASCOTA------------
+/*
+    public void deletemascota(View view) {
+
+        // Get the current user
+        FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
+
+        // Get the reference to the Firestore collection and document
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference mascotaRef = db.collection("mascotas").document(usuario.getUid());
+
+        // Create a listener to handle the deletion result
+        mascotaRef.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(EditarMascotaActivity.this, "Mascota eliminada correctamente", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(EditarMascotaActivity.this, "Error al eliminar mascota: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+ */
 
 
 }

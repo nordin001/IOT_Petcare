@@ -38,6 +38,7 @@ public class HomeActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         adaptador = ((Aplicacion) getApplicationContext()).adaptador;
+
         adaptador.setOnItemClickListener(new View.OnClickListener() {
 
 
@@ -46,17 +47,23 @@ public class HomeActivity extends AppCompatActivity {
             int pos = recyclerView.getChildAdapterPosition(v);
 
             // Check if the clicked item is the last one
-
+/*
             if (pos == adaptador.getItemCount() - 1) {
                 // Launch EditarMascotaActivity for the last item
 
-                editarMascota(v);
+               // editarMascota(v);
+                mostrarLugar(pos);
+
             }
 
+
+
             else {
+
+ */
                 // If not the last item, launch VistaMascotaActivity
                 mostrarLugar(pos);
-            }
+            //}
 
         }
     });
@@ -137,11 +144,15 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
+    //5. RECICLERVIEW
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         adaptador.stopListening();
     }
+
+
 
 
     //---------------  MENU -----------------

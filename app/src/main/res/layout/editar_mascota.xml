@@ -285,13 +285,14 @@
 
     <Button
         android:id="@+id/button6"
+        style="@style/EstiloBotonAmarilloCerrar"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
+        android:onClick="deletemascota"
         android:text="Eliminar mascota"
         app:layout_constraintStart_toStartOf="@+id/button5"
-        app:layout_constraintTop_toBottomOf="@+id/button5"
-        style="@style/EstiloBotonAmarilloCerrar"/>
+        app:layout_constraintTop_toBottomOf="@+id/button5" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

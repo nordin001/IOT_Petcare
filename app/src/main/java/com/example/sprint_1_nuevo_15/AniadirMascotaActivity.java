@@ -126,6 +126,7 @@ public class AniadirMascotaActivity  extends AppCompatActivity {
             // Retrieve position from the intent
             Bundle extras = getIntent().getExtras();
             adaptador = ((Aplicacion) getApplication()).adaptador;
+            /*
             mascota = adaptador.getItem(pos);
             usoMascota = new CasosDeUsoMascota(this, lugares);
             if (adaptador != null && adaptador.getItemCount() > 0 && extras != null && extras.containsKey("pos")) {
@@ -139,10 +140,31 @@ public class AniadirMascotaActivity  extends AppCompatActivity {
             } else {
                 Log.e("aniadir", "Error: Intent extras do not contain 'pos' or adaptador is empty");
             }
+
+
+
+             */
+
+
+
+            if (adaptador != null && adaptador.getItemCount() > 0 && extras != null && extras.containsKey("pos")) {
+                pos = extras.getInt("pos", 0);
+                // Initialize EditText fields
+                mascota = adaptador.getItem(pos); // Retrieve the Mascota object at position pos
+            } else {
+                Log.e("aniadir", "Error: Intent extras do not contain 'pos' or adaptador is empty");
+            }
+
             editarNombre = findViewById(R.id.editarNombre);
             editarDierrecion = findViewById(R.id.editarDierrecion);
             editarPesp = findViewById(R.id.editarPesp);
             editarEdad = findViewById(R.id.editarEdad);
+
+            if (pos >= 0 && pos < adaptador.getItemCount()) {
+                mascota = adaptador.getItem(pos); // Retrieve the Mascota object at position pos
+            } else {
+                Log.e("aniadir", "Error: Invalid position 'pos'");
+            }
 
 
             //-------------toolbar-------------------------
@@ -303,7 +325,7 @@ public class AniadirMascotaActivity  extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         // Referencia al documento del usuario específico
-        DocumentReference userDocRef = db.collection("mascotas").document();
+        DocumentReference userDocRef = db.collection("mascotas").document(user.getUid());
 
         // Crea un mapa con los datos de la mascota
         Map<String, Object> mascota = new HashMap<>();
@@ -311,6 +333,8 @@ public class AniadirMascotaActivity  extends AppCompatActivity {
         mascota.put("direccion", direccion);
         mascota.put("peso", peso);
         mascota.put("edad", edad);
+        mascota.put("userid",user.getUid());
+
 
         // Agrega o sobrescribe la mascota en el documento del usuario
         userDocRef.set(mascota)
@@ -318,7 +342,7 @@ public class AniadirMascotaActivity  extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d("aniadir", "Datos de la mascota agregados con éxito.");
-
+                        Toast.makeText(AniadirMascotaActivity.this, "Mascota creada correctamente", Toast.LENGTH_SHORT).show();
                         // Aquí puedes mostrar un mensaje o realizar alguna otra acción si es necesario
                     }
                 })
@@ -326,6 +350,8 @@ public class AniadirMascotaActivity  extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.e("aniadir", "Error al agregar los datos de la mascota", e);
+                        Toast.makeText(AniadirMascotaActivity.this, "Error al eliminar mascota: " , Toast.LENGTH_SHORT).show();
+
                         // Maneja el error aquí si es necesario
                     }
                 });

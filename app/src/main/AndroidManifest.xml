@@ -68,6 +68,7 @@
         <activity android:name=".PrimerosPasosDescubrirMasActivity"/>
         <activity android:name=".PrimerosPasosDescubrirMasActivity$iluminacionDescubrirActivity"/>
         <activity android:name=".PrimerosPasosDescubrirMasActivity$SeguridadDescubrirActivity"/>
+        <activity android:name=".EditarMascotaActivity$PopupEliminarMascotaActivity"/>
     </application>
 
 </manifest>
