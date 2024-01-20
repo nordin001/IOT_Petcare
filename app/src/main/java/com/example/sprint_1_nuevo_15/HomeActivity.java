@@ -183,4 +183,11 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
+
+    //----------------Aniadir mascota clase ------//
+
+    public void lanzarAniadirmascota(View view){
+        Intent i = new Intent(this,    AniadirMascotaActivity.class);
+        startActivity(i);
+    }
 }
