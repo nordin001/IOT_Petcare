@@ -9,261 +9,264 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/white"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" >
-    </androidx.appcompat.widget.Toolbar>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_margin="8dp"
-        android:layout_marginTop="30dp"
-        app:cardBackgroundColor="#FFFFFF"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="4dp">
-
-            <ImageView
-                android:id="@+id/fotos"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:contentDescription="fotografía"
-                android:src="@drawable/descubrir_mas_1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" >
+        </androidx.appcompat.widget.Toolbar>
 
 
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:text="Primeros pasos"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fotos" />
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="356dp"
-                android:layout_height="47dp"
-                android:layout_marginTop="10dp"
-                android:text="Es muy fácil  vigilar tu mascota. Estes donde  estes."
-                android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="@+id/textView1"
-                app:layout_constraintTop_toBottomOf="@+id/textView1" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView2"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_margin="8dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            app:cardBackgroundColor="#FFFFFF"
-            app:cardCornerRadius="20dp"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="4dp">
-
-                <ImageView
-                    android:id="@+id/fotoPerr"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:contentDescription="fotografía"
-                    android:src="@drawable/descubrir_mas_2"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="250dp"
+                android:layout_margin="8dp"
+                android:layout_marginTop="30dp"
+                android:onClick="abrirPrimerosPasosDescubrirMas"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
 
-                <TextView
-                    android:id="@+id/textViewLuz"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:text="Iluminación"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/fotoPerr" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="4dp">
 
-                <TextView
-                    android:id="@+id/textViewluz"
-                    android:layout_width="356dp"
-                    android:layout_height="47dp"
-                    android:layout_marginTop="10dp"
-                    android:text="Puedes encender la luz de tu mascota cuando quieres"
-                    android:textSize="15sp"
-                    app:layout_constraintStart_toStartOf="@+id/textViewLuz"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewLuz" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:id="@+id/fotos"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:contentDescription="fotografía"
+                        android:src="@drawable/descubrir_mas_1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView3"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_margin="8dp"
-            android:layout_marginTop="30dp"
-            app:cardBackgroundColor="#FFFFFF"
-            app:cardCornerRadius="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Primeros pasos"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/fotos" />
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="356dp"
+                        android:layout_height="47dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Es muy fácil  vigilar tu mascota. Estes donde  estes."
+                        android:textSize="15sp"
+                        app:layout_constraintStart_toStartOf="@+id/textView1"
+                        app:layout_constraintTop_toBottomOf="@+id/textView1" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="4dp">
-
-            <ImageView
-                android:id="@+id/foto3"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:contentDescription="fotografía"
-                android:src="@drawable/descubrir_mas_3"
+                android:layout_height="250dp"
+                android:layout_margin="8dp"
+                android:layout_marginTop="30dp"
+                android:onClick="abrirIluminacionDescubrirMas"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="parent">
 
 
-                <TextView
-                    android:id="@+id/textViewSeguridad"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:text="Seguridad"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/foto3" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="4dp">
 
-                <TextView
-                    android:id="@+id/textViewSEG"
-                    android:layout_width="356dp"
-                    android:layout_height="47dp"
-                    android:layout_marginTop="10dp"
-                    android:text="No pierdes de vista tu mascota con nuestras cameras de vigilancia."
-                    android:textSize="15sp"
-                    app:layout_constraintStart_toStartOf="@+id/textViewSeguridad"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewSeguridad" />
+                    <ImageView
+                        android:id="@+id/fotoPerr"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:contentDescription="fotografía"
+                        android:src="@drawable/descubrir_mas_2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/textViewLuz"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Iluminación"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/fotoPerr" />
 
-        </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:id="@+id/textViewluz"
+                        android:layout_width="356dp"
+                        android:layout_height="47dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Puedes encender la luz de tu mascota cuando quieres"
+                        android:textSize="15sp"
+                        app:layout_constraintStart_toStartOf="@+id/textViewLuz"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewLuz" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView4"
-            android:layout_width="match_parent"
-            android:layout_height="350dp"
-            android:layout_margin="8dp"
-            android:layout_marginTop="30dp"
-            app:cardBackgroundColor="#FFFFFF"
-            app:cardCornerRadius="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="4dp">
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
 
-            <ImageView
-                android:id="@+id/foto4"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_marginTop="10dp"
-                android:contentDescription="fotografía"
-                android:src="@drawable/descubrir_mas_4"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView3"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_margin="8dp"
+                android:layout_marginTop="30dp"
+                android:onClick="abrirSeguridadDescubrirMas"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewText" />
+                app:layout_constraintStart_toStartOf="parent">
 
-            <TextView
-                android:id="@+id/textViewText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:text="Comprar otro Kit de vigilancia"
-                android:textSize="20sp"
-                android:textStyle="bold"
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="4dp">
+
+                    <ImageView
+                        android:id="@+id/foto3"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:contentDescription="fotografía"
+                        android:src="@drawable/descubrir_mas_3"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/textViewSeguridad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Seguridad"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/foto3" />
+
+                    <TextView
+                        android:id="@+id/textViewSEG"
+                        android:layout_width="356dp"
+                        android:layout_height="47dp"
+                        android:layout_marginTop="10dp"
+                        android:text="No pierdes de vista tu mascota con nuestras cameras de vigilancia."
+                        android:textSize="15sp"
+                        app:layout_constraintStart_toStartOf="@+id/textViewSeguridad"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewSeguridad" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView4"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_margin="8dp"
+                android:layout_marginTop="30dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textViewCasa"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:text="Casa robotica y collar"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/foto4" />
-
-            <TextView
-                android:id="@+id/textViewC"
-                android:layout_width="356dp"
-                android:layout_height="47dp"
-                android:layout_marginTop="10dp"
-                android:text="200€ "
-                android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="@+id/textViewCasa"
-                app:layout_constraintTop_toBottomOf="@+id/textViewCasa" />
+                app:layout_constraintStart_toStartOf="parent">
 
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="4dp">
+
+
+                    <ImageView
+                        android:id="@+id/foto4"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:layout_marginTop="10dp"
+                        android:contentDescription="fotografía"
+                        android:src="@drawable/descubrir_mas_4"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewText" />
+
+                    <TextView
+                        android:id="@+id/textViewText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Comprar otro Kit de vigilancia"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textViewCasa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Casa robotica y collar"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/foto4" />
+
+                    <TextView
+                        android:id="@+id/textViewC"
+                        android:layout_width="356dp"
+                        android:layout_height="47dp"
+                        android:layout_marginTop="10dp"
+                        android:text="200€ "
+                        android:textSize="15sp"
+                        app:layout_constraintStart_toStartOf="@+id/textViewCasa"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewCasa" />
 
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -161,10 +161,22 @@ public class HomeActivity extends AppCompatActivity {
 
 
     //---------------  MENU -----------------
+    //---------------------------------------------------------------------
+
+    //El menu arriba para el acercade
     @Override public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true; /** true -> el menú ya está visible*/}
-
+    public static class AcercaDeActivity extends AppCompatActivity {
+        @Override public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.acercade);
+        }
+    }
+    public void lanzarAcercaDe(View view){
+        Intent i = new Intent(this, MainActivity.AcercaDeActivity.class);
+        startActivity(i);
+    }
     @Override public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.acercaDe) {
@@ -175,23 +187,32 @@ public class HomeActivity extends AppCompatActivity {
             lanzarEditarPerfil(null);
             return true;
         }
+        if (id == R.id.descubrir) {
+
+            lanzarDescubrir(null);
+            //  getMenuInflater().inflate(R.menu.menu_main, item.getSubMenu());
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
-    //---------------METODOS MENU----------------------
+
+
 
 
     public void lanzarEditarPerfil(View view){
         Intent i = new Intent(this,EditarPerfil.class);
         startActivity(i);
     }
-    public static class AcercaDeActivity extends AppCompatActivity {
-        @Override public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.acercade);
-        }
+
+    public void lanzarDescubrir(View view){
+        Intent i = new Intent(this,DescubrirActivity.class);
+        startActivity(i);
     }
-    public void lanzarAcercaDe(View view){
-        Intent i = new Intent(this, MainActivity.AcercaDeActivity.class);
+
+    //----------------Aniadir mascota clase ------//
+
+    public void lanzarAniadirmascota(View view){
+        Intent i = new Intent(this,    AniadirMascotaActivity.class);
         startActivity(i);
     }
 

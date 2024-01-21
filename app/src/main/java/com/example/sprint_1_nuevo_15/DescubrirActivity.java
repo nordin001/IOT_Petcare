@@ -62,4 +62,16 @@ public class DescubrirActivity extends AppCompatActivity {
         Intent i = new Intent(this, MainActivity.AcercaDeActivity.class);
         startActivity(i);
     }
+    public void abrirPrimerosPasosDescubrirMas(View view){
+        Intent i = new Intent(this, PrimerosPasosDescubrirMasActivity.class);
+        startActivity(i);
+    }
+    public void abrirIluminacionDescubrirMas(View view){
+        Intent i = new Intent(this, PrimerosPasosDescubrirMasActivity.iluminacionDescubrirActivity.class);
+        startActivity(i);
+    }
+    public void abrirSeguridadDescubrirMas(View view){
+        Intent i = new Intent(this, PrimerosPasosDescubrirMasActivity.SeguridadDescubrirActivity.class);
+        startActivity(i);
+    }
 }

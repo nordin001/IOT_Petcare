@@ -5,6 +5,10 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.INTERNET"/>
 
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
         android:name=".Aplicacion"
         android:allowBackup="true"
@@ -65,6 +69,10 @@
         <activity android:name=".mapaActivity"/>
         <activity android:name=".AniadirMascotaActivity"/>
 <activity android:name=".DescubrirActivity"/>
+        <activity android:name=".PrimerosPasosDescubrirMasActivity"/>
+        <activity android:name=".PrimerosPasosDescubrirMasActivity$iluminacionDescubrirActivity"/>
+        <activity android:name=".PrimerosPasosDescubrirMasActivity$SeguridadDescubrirActivity"/>
+
     </application>
 
 </manifest>
