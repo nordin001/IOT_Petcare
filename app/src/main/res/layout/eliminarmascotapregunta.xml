@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/fotodeperritosad"
+        android:layout_width="270dp"
+        android:layout_height="270dp"
+        android:layout_marginTop="64dp"
+        android:contentDescription="fotografía"
+        android:src="@drawable/saddog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/preguntadeborrar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="¿Estás seguro de que quieres eliminar esta mascota?"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fotodeperritosad" />
+
+
+    <Button
+        android:id="@+id/btnSi"
+        style="@style/EstiloBotonNaranja"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="10dp"
+        android:layout_weight="1"
+        android:text="Sí"
+        app:layout_constraintEnd_toStartOf="@+id/btnNo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/preguntadeborrar" />
+
+    <Button
+        android:id="@+id/btnNo"
+        style="@style/EstiloBotonAmarilloCerrar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_weight="1"
+        android:text="No"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnSi"
+        app:layout_constraintTop_toBottomOf="@+id/preguntadeborrar" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

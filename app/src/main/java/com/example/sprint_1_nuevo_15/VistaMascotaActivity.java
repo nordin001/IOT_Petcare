@@ -289,10 +289,13 @@ public class VistaMascotaActivity extends AppCompatActivity {
 
     @Override
     public void onDestroy() {
-        String s = mqtt.desconectar();
-        Log.d(TAG, s);
+        if (mqtt != null) {
+            String s = mqtt.desconectar();
+            Log.d(TAG, s);
+        }
         super.onDestroy();
     }
+
 
 
     private void showAlertDialog(String title, String message) {
