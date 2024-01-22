@@ -117,6 +117,7 @@ public class VistaMascotaActivity extends AppCompatActivity {
         ImageView logoTipo = findViewById(R.id.foto);
         TextView direccion = findViewById(R.id.direccion);
         TextView edad = findViewById(R.id.edad);
+        TextView presencia=findViewById(R.id.presencia);
         peso = findViewById(R.id.peso);
         humedad = findViewById(R.id.humedad);
         temperatura = findViewById(R.id.temperatura);
@@ -130,6 +131,7 @@ public class VistaMascotaActivity extends AppCompatActivity {
         edad.setText(String.valueOf(mascota.getEdad()));
         humedad.setText(String.valueOf(mascota.getHumedad()));
         temperatura.setText(String.valueOf(mascota.getTemperatura()));
+
         // Check and hide TextViews when information is empty
         checkAndHideEmptyViews(direccion, mascota.getDireccion());
         if (mascota.getTemperatura() > 35) {

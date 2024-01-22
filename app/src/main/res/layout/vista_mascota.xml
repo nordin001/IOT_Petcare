@@ -36,7 +36,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="170dp"
             android:layout_margin="8dp"
             android:layout_marginTop="30dp"
             app:cardBackgroundColor="#FFFFFF"
@@ -49,6 +49,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="4dp">
+
+                <TextView
+                    android:id="@+id/presencia"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:maxLines="1"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/peso"
+                    app:layout_constraintVertical_bias="0.936" />
 
                 <ImageView
                     android:id="@+id/foto"
